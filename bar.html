@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Library – Bar & Lounge Wien</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+:root{
+  --bg:#06080e;--bg2:#0e1018;--fg:#f0ece4;--fg2:#d0c8b8;--fg-m:#707880;
+  --ac:#c9a84c;--ac-lt:#e8c870;--ac-fg:#06080e;
+  --nav:#06080e;--nav-b:rgba(201,168,76,.1);
+  --card:#0e1018;--card-s:0 4px 32px rgba(0,0,0,.5);--card-b:1px solid rgba(201,168,76,.1);
+  --r:2px;--fh:'Cormorant Garamond',Georgia,serif;--fb:'Inter',system-ui,sans-serif;
+  --nav-h:70px;
+}
+.thm-day{--bg:#faf8f2;--bg2:#f0ece0;--fg:#1a1408;--fg2:#3a2c18;--fg-m:#8a7858;--ac:#c9a84c;--ac-lt:#e8c870;--ac-fg:#1a1408;--nav:#faf8f2;--nav-b:rgba(201,168,76,.14);--card:#fff;--card-s:0 4px 32px rgba(0,0,0,.07);--card-b:1px solid rgba(201,168,76,.12)}
+.thm-neon{--bg:#060810;--bg2:#0c0c18;--fg:#f0eeff;--fg2:#c0b8ff;--fg-m:#6060a0;--ac:#ff2080;--ac-lt:#ff5090;--ac-fg:#060810;--nav:#060810;--nav-b:rgba(255,32,128,.1);--card:#111120;--card-s:0 4px 32px rgba(255,32,128,.12);--card-b:1px solid rgba(255,32,128,.1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--fg);line-height:1.6}
+a{text-decoration:none;color:inherit}
+
+nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(6,8,14,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--nav-b);transition:all .3s}
+.nav-logo{font-family:var(--fh);font-size:22px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--fg)}
+.nav-logo em{font-style:italic;color:var(--ac);letter-spacing:.04em}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-m);font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--ac)}
+.nav-cta{font-size:11px;padding:11px 22px;border:1.5px solid var(--ac);color:var(--ac);letter-spacing:.1em;text-transform:uppercase;font-weight:500;border-radius:var(--r);transition:all .2s}
+.nav-cta:hover{background:var(--ac);color:var(--ac-fg)}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:620px;overflow:hidden}
+.hero-track{position:absolute;inset:0}
+.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.6s ease-in-out}
+.hero-slide.on{opacity:1}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,8,14,.85) 0%,rgba(6,8,14,.4) 50%,rgba(6,8,14,.2) 100%)}
+.hero-cnt{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:0 56px 72px}
+.hero-eye{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--ac);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.hero-eye::before{content:'';width:24px;height:1px;background:var(--ac)}
+.hero-h{font-family:var(--fh);font-size:64px;line-height:1.0;color:var(--fg);margin-bottom:16px;max-width:640px;text-wrap:balance}
+.hero-h em{font-style:italic;color:var(--ac)}
+.hero-p{font-size:14px;color:var(--fg-m);line-height:1.7;margin-bottom:28px;max-width:480px;font-weight:300}
+.hero-btns{display:flex;gap:12px}
+.btn-primary{display:inline-block;font-size:11px;padding:13px 24px;background:var(--ac);color:var(--ac-fg);font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:var(--r);transition:all .2s}
+.btn-primary:hover{background:var(--ac-lt)}
+.btn-outline{display:inline-block;font-size:11px;padding:12px 22px;border:1.5px solid rgba(201,168,76,.5);color:var(--ac);font-weight:500;letter-spacing:.1em;text-transform:uppercase;border-radius:var(--r);transition:all .2s}
+.btn-outline:hover{border-color:var(--ac);background:rgba(201,168,76,.1)}
+.hero-scroll{position:absolute;bottom:28px;right:56px;display:flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-m)}
+.hero-scroll::after{content:'';width:40px;height:1px;background:var(--fg-m)}
+
+/* SECTION */
+section{padding:80px 56px}
+.sec-label{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--ac);margin-bottom:10px}
+.sec-h{font-family:var(--fh);font-size:40px;line-height:1.1;text-wrap:balance;margin-bottom:14px;font-weight:600}
+.sec-p{font-size:14px;color:var(--fg-m);line-height:1.75;max-width:560px}
+
+/* DRINKS */
+.drinks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:48px}
+.drink-card{position:relative;overflow:hidden;cursor:pointer}
+.drink-img{height:380px;background-size:cover;background-position:center;transition:transform .6s}
+.drink-card:hover .drink-img{transform:scale(1.06)}
+.drink-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,8,14,.9) 0%,rgba(6,8,14,.2) 50%,transparent 100%)}
+.drink-info{position:absolute;bottom:0;left:0;right:0;padding:28px 24px}
+.drink-cat{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--ac);margin-bottom:8px}
+.drink-title{font-family:var(--fh);font-size:24px;font-weight:600;font-style:italic;margin-bottom:6px;color:var(--fg)}
+.drink-desc{font-size:12px;color:rgba(240,236,228,.6);line-height:1.6;max-height:0;overflow:hidden;transition:max-height .4s}
+.drink-card:hover .drink-desc{max-height:80px}
+.drink-price{font-size:14px;font-weight:600;color:var(--ac);margin-top:10px}
+
+/* EDITORIAL DARK */
+.editorial{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:520px}
+.editorial-photo{position:relative;overflow:hidden}
+.editorial-bg{position:absolute;inset:0;background-size:cover;background-position:center}
+.editorial-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent 50%,var(--bg2) 100%)}
+.editorial-text{background:var(--bg2);padding:80px 60px;display:flex;flex-direction:column;justify-content:center}
+.editorial-quote{font-family:var(--fh);font-size:26px;font-style:italic;line-height:1.5;color:var(--fg);border-left:3px solid var(--ac);padding-left:20px;margin:20px 0 24px}
+.editorial-sig{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);font-weight:500}
+
+/* WHISKEY / KARTE */
+.karte{background:var(--bg2);padding:80px 56px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.karte .sec-h{font-size:34px}
+.karte-list{margin-top:28px}
+.karte-row{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--card-b);font-size:13px;align-items:flex-start;gap:16px}
+.karte-row:last-child{border-bottom:none}
+.karte-row span:last-child{color:var(--ac);font-weight:600;white-space:nowrap}
+.karte-row span:first-child{line-height:1.4}
+.karte-row small{display:block;font-size:11px;color:var(--fg-m);margin-top:2px}
+
+/* EVENTS GALLERY */
+.events-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:280px 200px;gap:4px;margin-top:40px}
+.event-item{background-size:cover;background-position:center;position:relative;overflow:hidden;cursor:pointer;transition:transform .3s}
+.event-item:hover{transform:scale(1.02)}
+.event-item:first-child{grid-row:1/3}
+.event-item:last-child{grid-column:2/4;grid-row:2/3}
+.event-label{position:absolute;bottom:0;left:0;right:0;padding:20px;background:linear-gradient(transparent,rgba(6,8,14,.85));color:var(--fg)}
+.event-label span{font-family:var(--fh);font-size:18px;font-style:italic;font-weight:600}
+.event-label small{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);margin-bottom:4px}
+
+/* HOURS */
+.hours{padding:80px 56px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;border-top:1px solid var(--card-b)}
+.hour-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--card-b);font-size:13px}
+.hour-row.today{color:var(--ac);font-weight:600}
+.hour-row.today .day::after{content:' · Heute';font-size:11px;font-weight:400}
+
+/* RESERVE */
+.reserve{background:var(--bg2);padding:80px 56px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.reserve-info p{font-size:14px;color:var(--fg-m);line-height:1.8;margin-bottom:16px}
+.reserve-detail{font-size:13px;color:var(--fg-m);margin-bottom:10px}
+.reserve-detail strong{color:var(--ac);display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:2px}
+form{display:flex;flex-direction:column;gap:14px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+input,select,textarea{width:100%;padding:13px 16px;background:rgba(255,255,255,.04);border:1px solid var(--card-b);border-radius:var(--r);font-size:13px;color:var(--fg);font-family:var(--fb);outline:none;transition:border-color .2s}
+input:focus,select:focus{border-color:var(--ac)}
+input::placeholder{color:var(--fg-m)}
+select option{background:var(--bg2)}
+
+/* FOOTER */
+footer{background:var(--bg);padding:40px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;border-top:1px solid var(--card-b)}
+.footer-logo{font-family:var(--fh);font-size:22px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--fg)}
+.footer-links{display:flex;gap:20px}
+.footer-links a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-m);transition:color .2s}
+.footer-links a:hover{color:var(--ac)}
+
+/* FAB */
+#fab{position:fixed;bottom:28px;right:28px;z-index:200}
+#fab-btn{width:46px;height:46px;border-radius:50%;background:var(--ac);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.3);font-size:16px}
+#fab-menu{position:absolute;bottom:56px;right:0;background:var(--card);border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,.4);overflow:hidden;min-width:160px;display:none;border:var(--card-b)}
+#fab-menu.open{display:block}
+.fab-opt{display:block;width:100%;padding:12px 18px;font-size:12px;letter-spacing:.08em;text-align:left;background:none;border:none;cursor:pointer;color:var(--fg);font-family:var(--fb);transition:background .15s}
+.fab-opt:hover{background:var(--bg2)}
+.fab-opt.on{color:var(--ac);font-weight:600}
+
+@media(max-width:768px){
+  nav{padding:0 20px}.nav-links{display:none}
+  .hero-cnt{padding:0 20px 48px}.hero-h{font-size:40px}
+  section,.karte,.hours,.reserve{padding:52px 20px}
+  .drinks-grid{grid-template-columns:1fr}
+  .editorial,.karte,.hours,.reserve{grid-template-columns:1fr;gap:40px}
+  .editorial-photo{height:280px}
+  .editorial-text{padding:48px 24px}
+  .events-grid{grid-template-columns:1fr 1fr;grid-template-rows:200px 200px 200px}
+  .event-item:first-child,.event-item:last-child{grid-row:auto;grid-column:auto}
+  footer{flex-direction:column;padding:28px 20px;text-align:center}.footer-links{flex-wrap:wrap;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">The <em>Library</em></span>
+  <div class="nav-links">
+    <a href="#drinks">Drinks</a>
+    <a href="#karte">Whiskey</a>
+    <a href="#events">Events</a>
+    <a href="#reserve">Reservierung</a>
+  </div>
+  <a href="#reserve" class="nav-cta">Book a table</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-track">
+    <div class="hero-slide on" style="background-image:url('https://picsum.photos/id/290/1600/1000')"></div>
+    <div class="hero-slide" style="background-image:url('https://picsum.photos/id/103/1600/1000')"></div>
+    <div class="hero-slide" style="background-image:url('https://picsum.photos/id/23/1600/1000')"></div>
+    <div class="hero-slide" style="background-image:url('https://picsum.photos/id/11/1600/1000')"></div>
+    <div class="hero-slide" style="background-image:url('https://picsum.photos/id/414/1600/1000')"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-cnt">
+    <div class="hero-eye">Bar & Lounge · Wien, 1. Bezirk · seit 1934</div>
+    <h1 class="hero-h">Wo Geschichten<br><em>beginnen.</em></h1>
+    <p class="hero-p">Handgefertigte Cocktails, rare Whiskeys und die besten Gespräche der Stadt — jeden Abend ab 18 Uhr. Dresscode: Smart Casual.</p>
+    <div class="hero-btns">
+      <a href="#reserve" class="btn-primary">Tisch reservieren</a>
+      <a href="#drinks" class="btn-outline">Cocktailkarte</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Entdecken</div>
+</div>
+
+<section id="drinks">
+  <div class="sec-label">Handcrafted Cocktails</div>
+  <h2 class="sec-h">Jedes Glas erzählt eine Geschichte</h2>
+  <p class="sec-p">Unsere Bartender sind Handwerker. Jeder Cocktail ist ein Unikat — mit hausgemachten Sirupen, frischen Kräutern und den besten Spirituosen der Welt.</p>
+  <div class="drinks-grid">
+    <div class="drink-card">
+      <div class="drink-img" style="background-image:url('https://picsum.photos/id/290/700/900')"></div>
+      <div class="drink-overlay"></div>
+      <div class="drink-info">
+        <div class="drink-cat">Signature · Saisonal</div>
+        <div class="drink-title">The Librarian</div>
+        <div class="drink-desc">Rye Whiskey, hausgemachtes Earl Grey-Sirup, Lemon Bitters, Rosmarin-Rauch. Unser Signature Drink seit 1992.</div>
+        <div class="drink-price">€ 16</div>
+      </div>
+    </div>
+    <div class="drink-card">
+      <div class="drink-img" style="background-image:url('https://picsum.photos/id/103/700/900')"></div>
+      <div class="drink-overlay"></div>
+      <div class="drink-info">
+        <div class="drink-cat">Classics · Reinterpreted</div>
+        <div class="drink-title">Velvet Negroni</div>
+        <div class="drink-desc">Barrel-aged Gin, roter Vermouth, Campari, Zitrusöl. Drei Wochen im Fass gereift für maximale Tiefe.</div>
+        <div class="drink-price">€ 18</div>
+      </div>
+    </div>
+    <div class="drink-card">
+      <div class="drink-img" style="background-image:url('https://picsum.photos/id/23/700/900')"></div>
+      <div class="drink-overlay"></div>
+      <div class="drink-info">
+        <div class="drink-cat">Non-Alcoholic</div>
+        <div class="drink-title">Garden of Eden</div>
+        <div class="drink-desc">Gurke, Basilikum, hausgemachter Verjus, Tonic, Eisblume. Komplex, erfrischend, alkoholfrei.</div>
+        <div class="drink-price">€ 12</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="editorial">
+  <div class="editorial-photo">
+    <div class="editorial-bg" style="background-image:url('https://picsum.photos/id/1041/900/700')"></div>
+  </div>
+  <div class="editorial-text">
+    <div class="sec-label">Unsere Geschichte</div>
+    <h2 class="sec-h">90 Jahre am selben Ort</h2>
+    <blockquote class="editorial-quote">"The Library ist kein Ort zum schnellen Trinken. Es ist ein Ort zum Verweilen, Nachdenken, Zuhören."</blockquote>
+    <div class="editorial-sig">— Viktor Hahn, Head Bartender</div>
+    <p class="sec-p" style="margin-top:20px">Seit 1934 ist The Library ein fester Bestandteil des Wiener Nachtlebens. Drei Generationen Besitzer, unzählige Stammgäste — und immer dieselbe Philosophie: Qualität über Quantität.</p>
+    <a href="#reserve" class="btn-primary" style="margin-top:28px;display:inline-block">Tisch reservieren</a>
+  </div>
+</div>
+
+<div class="karte" id="karte">
+  <div>
+    <div class="sec-label">Single Malt Selection</div>
+    <h2 class="sec-h">Whiskey aus aller Welt</h2>
+    <p class="sec-p">Über 90 handverlesene Single Malts und Blends — Schottland, Japan, Irland, USA, Österreich. Auf Anfrage Führungen durch unser Lager.</p>
+    <a href="#reserve" class="btn-outline" style="margin-top:28px;display:inline-block">Tasting anfragen</a>
+  </div>
+  <div>
+    <div class="karte-list">
+      <div class="karte-row"><span>Macallan 18 Years<small>Speyside, Schottland</small></span><span>€ 32</span></div>
+      <div class="karte-row"><span>Yamazaki 12 Years<small>Osaka, Japan</small></span><span>€ 28</span></div>
+      <div class="karte-row"><span>Redbreast 15 Years<small>Cork, Irland</small></span><span>€ 22</span></div>
+      <div class="karte-row"><span>Buffalo Trace Bourbon<small>Kentucky, USA</small></span><span>€ 16</span></div>
+      <div class="karte-row"><span>Talisker 10 Years<small>Isle of Skye</small></span><span>€ 18</span></div>
+      <div class="karte-row"><span>Blended Malt · Hausauswahl<small>Kuratiert von Viktor Hahn</small></span><span>€ 14</span></div>
+    </div>
+  </div>
+</div>
+
+<section id="events">
+  <div class="sec-label">Events & Specials</div>
+  <h2 class="sec-h">Was diese Woche passiert</h2>
+  <div class="events-grid">
+    <div class="event-item" style="background-image:url('https://picsum.photos/id/414/900/900')">
+      <div class="event-label"><small>Freitag · 20:00 Uhr</small><span>Live Jazz mit dem Hahn Trio</span></div>
+    </div>
+    <div class="event-item" style="background-image:url('https://picsum.photos/id/290/600/400')">
+      <div class="event-label"><small>Samstag · 19:00 Uhr</small><span>Whiskey Tasting Abend</span></div>
+    </div>
+    <div class="event-item" style="background-image:url('https://picsum.photos/id/103/600/400')">
+      <div class="event-label"><small>Jeden Mittwoch</small><span>Happy Hour 18–20 Uhr</span></div>
+    </div>
+    <div class="event-item" style="background-image:url('https://picsum.photos/id/11/1200/400')">
+      <div class="event-label"><small>Auf Anfrage</small><span>Private Events & Firmen-Abende</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="hours">
+  <div>
+    <div class="sec-label">Öffnungszeiten</div>
+    <h2 class="sec-h">Wir erwarten Sie</h2>
+    <p style="font-size:13px;color:var(--fg-m);margin-top:12px">Kitchen bis 23:00 · Bar bis 02:00 Uhr · Dresscode: Smart Casual</p>
+    <a href="#reserve" class="btn-primary" style="margin-top:28px;display:inline-block">Tisch reservieren</a>
+  </div>
+  <div>
+    <div class="hour-row" id="hr-1"><span class="day">Montag</span><span>Ruhetag</span></div>
+    <div class="hour-row" id="hr-2"><span class="day">Dienstag</span><span>18:00–01:00 Uhr</span></div>
+    <div class="hour-row" id="hr-3"><span class="day">Mittwoch</span><span>18:00–01:00 Uhr</span></div>
+    <div class="hour-row" id="hr-4"><span class="day">Donnerstag</span><span>18:00–01:00 Uhr</span></div>
+    <div class="hour-row" id="hr-5"><span class="day">Freitag</span><span>18:00–03:00 Uhr</span></div>
+    <div class="hour-row" id="hr-6"><span class="day">Samstag</span><span>18:00–03:00 Uhr</span></div>
+    <div class="hour-row" id="hr-0"><span class="day">Sonntag</span><span>18:00–24:00 Uhr</span></div>
+  </div>
+</div>
+
+<div class="reserve" id="reserve">
+  <div class="reserve-info">
+    <div class="sec-label">Reservierung</div>
+    <h2 class="sec-h">Ihren Abend planen</h2>
+    <p>Reservierungen für Tische bis 4 Personen telefonisch oder online. Für größere Gruppen, Private Events und Tastings bitten wir um direkten Kontakt.</p>
+    <div class="reserve-detail"><strong>Adresse</strong>Schottengasse 4, 1010 Wien</div>
+    <div class="reserve-detail"><strong>Telefon</strong>+43 1 532 10 20</div>
+    <div class="reserve-detail"><strong>E-Mail</strong>reserve@the-library.at</div>
+  </div>
+  <form onsubmit="return false">
+    <div class="form-row"><input type="text" placeholder="Name"><input type="tel" placeholder="Telefon"></input></div>
+    <input type="email" placeholder="E-Mail-Adresse">
+    <div class="form-row">
+      <input type="date">
+      <select><option value="">Uhrzeit</option><option>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option><option>22:00</option></select>
+    </div>
+    <select><option value="">Personenanzahl</option><option>1–2</option><option>3–4</option><option>5–6</option><option>7–8</option><option>Gruppe 9+</option></select>
+    <select><option value="">Anlass</option><option>Dinner & Drinks</option><option>Whiskey Tasting</option><option>Geburtstag</option><option>Firmen-Event</option><option>Private Feier</option></select>
+    <button type="submit" class="btn-primary" style="cursor:pointer;padding:14px;font-size:12px">Tisch anfragen</button>
+  </form>
+</div>
+
+<footer>
+  <span class="footer-logo">The Library</span>
+  <div class="footer-links"><a href="#">Cocktailkarte</a><a href="#">Whiskey</a><a href="#">Events</a><a href="#">Datenschutz</a><a href="#">Impressum</a></div>
+  <span style="font-size:11px;color:var(--fg-m)">© 2024 The Library GmbH · Wien</span>
+</footer>
+
+<div id="fab">
+  <div id="fab-menu">
+    <button class="fab-opt on" onclick="setTheme('')">🌙 Dark</button>
+    <button class="fab-opt" onclick="setTheme('thm-day')">☀️ Hell</button>
+    <button class="fab-opt" onclick="setTheme('thm-neon')">⚡ Neon</button>
+  </div>
+  <button id="fab-btn" onclick="document.getElementById('fab-menu').classList.toggle('open')">🎨</button>
+</div>
+
+<script>
+const slides=document.querySelectorAll('.hero-slide');
+let cur=0;
+setInterval(()=>{slides[cur].classList.remove('on');cur=(cur+1)%slides.length;slides[cur].classList.add('on')},4500);
+function setTheme(cls){document.body.className=cls;document.querySelectorAll('.fab-opt').forEach(b=>b.classList.remove('on'));event.target.classList.add('on');document.getElementById('fab-menu').classList.remove('open');localStorage.setItem('bar-theme',cls)}
+const sv=localStorage.getItem('bar-theme');if(sv!==null)document.body.className=sv;
+const d=new Date().getDay();const el=document.getElementById('hr-'+d);if(el)el.classList.add('today');
+</script>
+</body>
+</html>

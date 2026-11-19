@@ -1,418 +1,374 @@
-<title>Bella Italia</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bella Italia – Ristorante & Vineria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap">
 <style>
-:root {
-  --bg:#0a0501;--bg2:#130c06;--bg3:#1c1108;
-  --fg:#f0e8dc;--fg-muted:#9a8878;
-  --gold:#c9893a;--gold-lt:#e8b96a;
-  --border:rgba(201,137,58,.15);
-  color-scheme:dark;
+:root{
+  --bg:#faf6f0;--bg2:#f2e8d8;--fg:#1a0a04;--fg2:#4a2010;--fg-m:#8a6040;
+  --ac:#8b2635;--ac-lt:#c94455;--ac-fg:#fff;
+  --nav:#faf6f0;--nav-b:rgba(139,38,53,.1);
+  --card:#fff;--card-s:0 4px 32px rgba(0,0,0,.09);--card-b:1px solid rgba(139,38,53,.08);
+  --r:3px;--fh:'Playfair Display',Georgia,serif;--fb:'Inter',system-ui,sans-serif;
+  --nav-h:68px;
 }
+.thm-verde{--ac:#2d6a4f;--ac-lt:#3d8b6b;--nav-b:rgba(45,106,79,.1);--card-b:1px solid rgba(45,106,79,.08)}
+.thm-notte{--bg:#0c0804;--bg2:#1a1008;--fg:#f0e8d8;--fg2:#c8a888;--fg-m:#8a7060;--ac:#c9a84c;--ac-lt:#e8c870;--ac-fg:#0c0804;--nav:#0c0804;--card:#1a1208;--card-s:0 4px 32px rgba(0,0,0,.5);--card-b:1px solid rgba(201,168,76,.1)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
-img{max-width:100%;display:block;object-fit:cover}
-a{color:inherit;text-decoration:none}
+body{font-family:var(--fb);background:var(--bg);color:var(--fg);line-height:1.6}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 max(56px,env(safe-area-inset-left,0px)) 0 max(56px,env(safe-area-inset-right,0px));height:72px;transition:all .4s}
-nav.scrolled{background:rgba(10,5,1,.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.nav-brand{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;letter-spacing:.02em;color:var(--gold-lt)}
-.nav-brand em{font-style:italic;font-weight:400}
-.nav-links{display:flex;gap:36px;list-style:none}
-.nav-links a{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-muted);transition:color .2s}
-.nav-links a:hover{color:var(--fg)}
-.nav-cta{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:10px 24px;border:1px solid var(--gold);color:var(--gold);background:transparent;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
-.nav-cta:hover{background:var(--gold);color:var(--bg)}
-.nav-ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
-.nav-ham span{display:block;width:24px;height:1.5px;background:var(--fg)}
+nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(var(--nav-rgb,250,246,240),.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--nav-b);transition:background .3s}
+.nav-logo{font-family:var(--fh);font-size:22px;font-style:italic;letter-spacing:.02em;color:var(--fg)}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-m);font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--ac)}
+.nav-cta{font-size:12px;padding:11px 22px;background:var(--ac);color:var(--ac-fg);letter-spacing:.08em;text-transform:uppercase;font-weight:600;border-radius:var(--r);transition:background .2s}
+.nav-cta:hover{background:var(--ac-lt)}
 
-/* HERO SLIDER */
-.hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;overflow:hidden}
-.hero-slides{position:absolute;inset:0}
-.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease}
-.hero-slide.active{opacity:1}
-.hero-slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 8s ease}
-.hero-slide.active img{transform:scale(1)}
-.hero-ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,5,1,.87) 38%,rgba(10,5,1,.25) 100%),linear-gradient(to top,rgba(10,5,1,.55) 0%,transparent 45%)}
-.hero-cnt{position:relative;z-index:2;padding-left:max(72px,env(safe-area-inset-left,0px));max-width:620px}
-.hero-eye{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:14px}
-.hero-eye::before{content:'';width:36px;height:1px;background:var(--gold)}
-.hero-h1{font-family:'Playfair Display',serif;font-size:clamp(52px,8vw,104px);line-height:.95;font-weight:700;margin-bottom:10px}
-.hero-h1 em{font-style:italic;color:var(--gold-lt);font-weight:400;display:block}
-.hero-sub{font-size:16px;color:var(--fg-muted);margin-bottom:44px;font-weight:300;line-height:1.75;max-width:400px}
-.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
-.btn-p{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:15px 36px;background:var(--gold);color:var(--bg);border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
-.btn-p:hover{background:var(--gold-lt)}
-.btn-s{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:14px 30px;border:1px solid rgba(240,232,220,.3);color:var(--fg);background:transparent;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
-.btn-s:hover{border-color:var(--fg)}
-.hero-dots{position:absolute;bottom:36px;right:max(72px,env(safe-area-inset-right,0px));display:flex;gap:8px;z-index:2}
-.h-dot{width:24px;height:2px;background:rgba(255,255,255,.25);cursor:pointer;transition:all .3s}
-.h-dot.active{background:var(--gold);width:40px}
-.hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--fg-muted);animation:bob 2.2s infinite}
-.hero-scroll::after{content:'';width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent)}
-@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}55%{transform:translateX(-50%) translateY(7px)}}
+/* HERO */
+.hero{position:relative;height:100vh;min-height:600px;overflow:hidden;margin-top:0}
+.hero-track{position:absolute;inset:0}
+.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.6s ease-in-out}
+.hero-slide.on{opacity:1}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(26,10,4,.5) 0%,rgba(26,10,4,.15) 60%,transparent 100%)}
+.hero-card{position:absolute;bottom:60px;left:60px;background:rgba(250,246,240,.97);backdrop-filter:blur(24px);padding:36px 40px;max-width:440px;border-radius:var(--r);box-shadow:0 24px 80px rgba(0,0,0,.18)}
+.hero-eye{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ac);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.hero-eye::before{content:'';width:24px;height:1px;background:var(--ac)}
+.hero-h{font-family:var(--fh);font-size:38px;line-height:1.05;color:var(--fg);margin-bottom:12px;text-wrap:balance}
+.hero-h em{font-style:italic;color:var(--ac)}
+.hero-p{font-size:13px;color:var(--fg-m);line-height:1.7;margin-bottom:20px}
+.hero-btns{display:flex;gap:10px}
+.btn-primary{display:inline-block;font-size:12px;padding:12px 22px;background:var(--ac);color:var(--ac-fg);font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-radius:var(--r);transition:background .2s}
+.btn-primary:hover{background:var(--ac-lt)}
+.btn-outline{display:inline-block;font-size:12px;padding:11px 20px;border:1.5px solid var(--ac);color:var(--ac);font-weight:500;letter-spacing:.08em;text-transform:uppercase;border-radius:var(--r);transition:all .2s}
+.btn-outline:hover{background:var(--ac);color:var(--ac-fg)}
 
-/* SHARED */
-.sec{padding:100px max(56px,env(safe-area-inset-left,0px))}
-.eye{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
-.h2{font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,56px);line-height:1.05;font-weight:700;margin-bottom:20px}
-.h2 em{font-style:italic;color:var(--gold-lt)}
-.lead{font-size:16px;color:var(--fg-muted);line-height:1.8;max-width:520px}
+/* TRUST BAR */
+.trust{background:var(--bg2);padding:16px 48px;display:flex;gap:40px;border-bottom:1px solid var(--card-b)}
+.trust-item{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--fg-m)}
+.trust-dot{width:6px;height:6px;border-radius:50%;background:var(--ac);flex-shrink:0}
 
-/* SPECIALITÀ */
-.spec{background:var(--bg2)}
-.spec-in{max-width:1280px;margin:0 auto}
-.spec-hd{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;gap:24px;flex-wrap:wrap}
-.spec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
-@media(max-width:768px){.spec-grid{grid-template-columns:1fr}}
-.dish{position:relative;overflow:hidden;aspect-ratio:.75;cursor:pointer}
-.dish img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
-.dish:hover img{transform:scale(1.07)}
-.dish-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,5,1,.93) 0%,rgba(10,5,1,.08) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:32px 28px;transition:background .3s}
-.dish:hover .dish-ov{background:linear-gradient(to top,rgba(100,20,0,.88) 0%,rgba(10,5,1,.2) 55%,transparent 100%)}
-.dish-tag{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
-.dish-nm{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;line-height:1.1;margin-bottom:8px}
-.dish-desc{font-size:13px;color:var(--fg-muted);line-height:1.6;margin-bottom:14px}
-.dish-price{font-family:'Playfair Display',serif;font-size:19px;font-weight:300;color:var(--gold-lt)}
+/* SECTIONS */
+section{padding:80px 48px}
 
-/* SPEISEKARTE */
-.karte{background:var(--bg)}
-.karte-in{max-width:1040px;margin:0 auto}
-.karte-hd{text-align:center;margin-bottom:52px}
-.tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:52px;overflow-x:auto;scrollbar-width:none}
-.tabs::-webkit-scrollbar{display:none}
-.tab{padding:14px 26px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-muted);cursor:pointer;white-space:nowrap;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;font-family:inherit;transition:all .2s}
-.tab.on{color:var(--gold);border-bottom-color:var(--gold)}
-.panel{display:none}
-.panel.on{display:block}
-.mi-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px}
-@media(max-width:620px){.mi-grid{grid-template-columns:1fr}}
-.mi{padding:22px 24px;border:1px solid var(--border);display:flex;gap:18px;align-items:flex-start;transition:background .2s}
-.mi:hover{background:var(--bg2)}
-.mi-img{width:76px;height:76px;border-radius:2px;overflow:hidden;flex-shrink:0}
-.mi-img img{width:100%;height:100%;object-fit:cover}
-.mi-nm{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;margin-bottom:4px}
-.mi-desc{font-size:12px;color:var(--fg-muted);line-height:1.6;margin-bottom:8px}
-.mi-price{font-size:14px;color:var(--gold)}
+/* SECTION HEADERS */
+.sec-label{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--ac);margin-bottom:10px}
+.sec-h{font-family:var(--fh);font-size:38px;line-height:1.1;text-wrap:balance;margin-bottom:14px}
+.sec-p{font-size:14px;color:var(--fg-m);line-height:1.75;max-width:560px}
 
-/* STORIA */
-.storia{position:relative;overflow:hidden;padding:0;min-height:580px;display:flex;align-items:stretch}
-.storia-bg{position:absolute;inset:0}
-.storia-bg img{width:100%;height:100%;object-fit:cover;opacity:.3}
-.storia-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,5,1,.97) 38%,rgba(10,5,1,.65) 100%)}
-.storia-cnt{position:relative;z-index:1;padding:100px max(80px,env(safe-area-inset-left,0px));max-width:600px}
-.storia-q{font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,38px);font-style:italic;line-height:1.4;color:var(--fg);margin-bottom:28px}
-.storia-q::before{content:'\201C\2009';color:var(--gold);font-size:2.2em;line-height:0;vertical-align:-.4em}
-.storia-t{font-size:15px;color:var(--fg-muted);line-height:1.9;margin-bottom:32px}
-.storia-sig{font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:var(--gold-lt);border-top:1px solid var(--border);padding-top:20px}
+/* SPEISEKARTE CARDS */
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.menu-card{background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:var(--card-s);border:var(--card-b);transition:transform .3s,box-shadow .3s}
+.menu-card:hover{transform:translateY(-4px);box-shadow:0 16px 60px rgba(0,0,0,.14)}
+.menu-img{height:200px;background-size:cover;background-position:center;position:relative}
+.menu-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(26,10,4,.3) 0%,transparent 50%)}
+.menu-tag{position:absolute;top:14px;left:14px;font-size:9px;letter-spacing:.15em;text-transform:uppercase;background:var(--ac);color:#fff;padding:4px 10px;border-radius:2px}
+.menu-body{padding:20px 22px 24px}
+.menu-title{font-family:var(--fh);font-size:18px;font-style:italic;margin-bottom:6px;color:var(--fg)}
+.menu-desc{font-size:12px;color:var(--fg-m);line-height:1.65;margin-bottom:12px}
+.menu-price{font-size:14px;font-weight:600;color:var(--ac)}
+.menu-items{font-size:11px;color:var(--fg-m);line-height:1.8;border-top:1px solid var(--card-b);padding-top:12px;margin-top:12px}
+.menu-items span{display:flex;justify-content:space-between}
+.menu-items span::after{content:attr(data-price);color:var(--ac)}
 
-/* GALERIE */
-.gal{background:var(--bg3)}
-.gal-in{max-width:1280px;margin:0 auto}
-.gal-hd{text-align:center;margin-bottom:52px}
-.gal-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:260px 260px;gap:4px}
-.gi{overflow:hidden;cursor:pointer}
-.gi img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
-.gi:hover img{transform:scale(1.05)}
-.g1{grid-column:span 5;grid-row:span 2}
-.g2{grid-column:span 4}
-.g3{grid-column:span 3}
-.g4{grid-column:span 3}
-.g5{grid-column:span 4}
-@media(max-width:768px){.gal-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.gi{grid-column:span 1!important;grid-row:span 1!important;aspect-ratio:1}}
+/* EDITORIAL SECTION */
+.editorial{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:520px;margin:0 -48px}
+.editorial-photo{background-size:cover;background-position:center;position:relative}
+.editorial-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent 60%,var(--bg2) 100%)}
+.editorial-text{background:var(--bg2);padding:80px 60px;display:flex;flex-direction:column;justify-content:center}
+.editorial-quote{font-family:var(--fh);font-size:28px;font-style:italic;line-height:1.5;color:var(--fg);margin:20px 0 24px;border-left:3px solid var(--ac);padding-left:24px}
+.editorial-sig{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);font-weight:600}
 
-/* ORARI */
-.orari{background:var(--bg2)}
-.orari-in{max-width:860px;margin:0 auto;text-align:center}
-.orari-hd{margin-bottom:52px}
-.o-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:48px}
-@media(max-width:580px){.o-grid{grid-template-columns:1fr}}
-.o-row{padding:18px 28px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;transition:background .2s}
-.o-row.today{background:rgba(201,137,58,.1);border-color:rgba(201,137,58,.5)}
-.o-day{font-size:13px;font-weight:500}
-.o-time{font-size:13px;color:var(--fg-muted)}
-.o-row.today .o-day,.o-row.today .o-time{color:var(--gold-lt)}
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:200px 200px;gap:6px;margin-top:40px}
+.gallery-item{background-size:cover;background-position:center;border-radius:var(--r);overflow:hidden;position:relative;cursor:pointer;transition:transform .3s}
+.gallery-item:hover{transform:scale(1.02)}
+.gallery-item:first-child{grid-column:1/2;grid-row:1/3}
+.gallery-item:nth-child(4){grid-column:3/4;grid-row:1/3}
 
-/* RISERVA */
-.riserva{background:var(--bg)}
-.riserva-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.3fr;gap:80px;align-items:start}
-@media(max-width:880px){.riserva-in{grid-template-columns:1fr}}
-.riserva-items{margin-top:32px;display:flex;flex-direction:column;gap:18px}
-.ri{display:flex;gap:16px;align-items:flex-start}
-.ri-ico{font-size:18px;margin-top:3px}
-.ri-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
-.ri-val{font-size:14px;color:var(--fg-muted)}
-.f-row{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:3px}
-@media(max-width:480px){.f-row{grid-template-columns:1fr}}
-.f-field{margin-bottom:3px}
-.f-in{width:100%;padding:16px 18px;background:var(--bg2);border:1px solid var(--border);color:var(--fg);font-size:14px;font-family:'Inter',sans-serif;transition:border-color .2s;outline:none}
-.f-in:focus{border-color:var(--gold)}
-.f-in::placeholder{color:var(--fg-muted)}
-select.f-in{cursor:pointer}
-select.f-in option{background:var(--bg2)}
-.f-sub{width:100%;padding:17px;background:var(--gold);color:var(--bg);font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s;margin-top:3px}
-.f-sub:hover{background:var(--gold-lt)}
+/* ÖFFNUNGSZEITEN */
+.hours{background:var(--fg);color:var(--bg);padding:80px 48px}
+.hours .sec-label{color:var(--ac)}
+.hours .sec-h{color:var(--bg)}
+.hours-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px;max-width:640px}
+.hour-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:14px}
+.hour-row.today{color:var(--ac);font-weight:600}
+.hour-row.today .day::after{content:' (Heute)';font-size:11px;font-weight:400}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:48px;align-items:start}
+.contact-info h3{font-family:var(--fh);font-size:24px;margin-bottom:16px;font-style:italic}
+.contact-info p{font-size:14px;color:var(--fg-m);line-height:1.8}
+.contact-detail{display:flex;gap:12px;align-items:flex-start;margin-top:16px;font-size:13px;color:var(--fg-m)}
+.contact-detail strong{color:var(--fg);font-size:11px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:2px}
+form{display:flex;flex-direction:column;gap:14px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+input,select,textarea{width:100%;padding:13px 16px;background:var(--card);border:1px solid var(--card-b);border-radius:var(--r);font-size:13px;color:var(--fg);font-family:var(--fb);outline:none;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--ac)}
+textarea{height:110px;resize:vertical}
+input::placeholder,textarea::placeholder{color:var(--fg-m)}
 
 /* FOOTER */
-footer{background:#050200;border-top:1px solid var(--border);padding:60px max(56px,env(safe-area-inset-left,0px)) 36px}
-.foot-in{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:28px;margin-bottom:40px}
-.foot-brand{font-family:'Playfair Display',serif;font-size:22px;color:var(--gold-lt)}
-.foot-brand em{font-style:italic;font-weight:400}
-.foot-nav{display:flex;gap:24px;flex-wrap:wrap}
-.foot-nav a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-muted);transition:color .2s}
-.foot-nav a:hover{color:var(--fg)}
-.foot-copy{max-width:1280px;margin:0 auto;font-size:12px;color:var(--fg-muted);padding-top:20px;border-top:1px solid var(--border)}
+footer{background:var(--fg);color:rgba(240,232,220,.7);padding:48px 48px 32px;font-size:13px}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px;gap:40px}
+.footer-logo{font-family:var(--fh);font-size:24px;font-style:italic;color:rgba(240,232,220,.9)}
+.footer-links{display:flex;gap:24px}
+.footer-links a{color:rgba(240,232,220,.5);letter-spacing:.08em;font-size:11px;text-transform:uppercase;transition:color .2s}
+.footer-links a:hover{color:var(--ac)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding-top:20px;display:flex;justify-content:space-between;font-size:11px;color:rgba(240,232,220,.4)}
 
 /* FAB */
-#fab{position:fixed;bottom:24px;right:max(24px,env(safe-area-inset-right,0px));width:50px;height:50px;border-radius:50%;background:var(--gold);color:var(--bg);border:none;font-size:18px;cursor:pointer;z-index:200;box-shadow:0 4px 20px rgba(201,137,58,.4);transition:transform .2s}
-#fab:hover{transform:scale(1.1)}
-#panel{position:fixed;bottom:84px;right:max(24px,env(safe-area-inset-right,0px));background:var(--bg2);border:1px solid var(--border);padding:18px;min-width:190px;z-index:200;transform:translateY(8px) scale(.96);opacity:0;pointer-events:none;transition:all .2s;transform-origin:bottom right}
-#panel.open{transform:none;opacity:1;pointer-events:all}
-.pt{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
-.sbs{display:flex;flex-direction:column;gap:4px}
-.sb{padding:8px 12px;font-size:12px;background:none;border:1px solid var(--border);color:var(--fg);cursor:pointer;text-align:left;font-family:inherit;transition:all .15s}
-.sb:hover,.sb.on{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+#fab{position:fixed;bottom:28px;right:28px;z-index:200}
+#fab-btn{width:46px;height:46px;border-radius:50%;background:var(--ac);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.25);font-size:16px}
+#fab-menu{position:absolute;bottom:56px;right:0;background:var(--card);border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,.2);overflow:hidden;min-width:160px;display:none;border:var(--card-b)}
+#fab-menu.open{display:block}
+.fab-opt{display:block;width:100%;padding:12px 18px;font-size:12px;letter-spacing:.08em;text-align:left;background:none;border:none;cursor:pointer;color:var(--fg);font-family:var(--fb);transition:background .15s}
+.fab-opt:hover{background:var(--bg2)}
+.fab-opt.on{color:var(--ac);font-weight:600}
 
 @media(max-width:768px){
-  .nav-links,.nav-cta{display:none}
-  .nav-ham{display:flex}
-  .sec{padding:70px max(20px,env(safe-area-inset-left,0px))}
-  .hero-cnt{padding-left:max(24px,env(safe-area-inset-left,0px))}
-  .storia-cnt{padding:70px max(24px,env(safe-area-inset-left,0px))}
+  nav{padding:0 20px}
+  .nav-links{display:none}
+  .hero-card{left:20px;right:20px;bottom:30px;padding:24px}
+  .hero-h{font-size:28px}
+  section{padding:48px 20px}
+  .trust{padding:14px 20px;flex-wrap:wrap;gap:16px}
+  .menu-grid,.gallery-grid,.contact-grid,.hours-grid{grid-template-columns:1fr}
+  .editorial{grid-template-columns:1fr;margin:0 -20px}
+  .editorial-photo{height:280px}
+  .editorial-text{padding:40px 24px}
+  .footer-top{flex-direction:column;gap:20px}
+  .footer-links{flex-wrap:wrap}
 }
 </style>
+</head>
+<body>
 
-<nav id="nav">
-  <div class="nav-brand">Bella <em>Italia</em></div>
-  <ul class="nav-links">
-    <li><a href="#spec">Specialità</a></li>
-    <li><a href="#karte">Speisekarte</a></li>
-    <li><a href="#storia">Storia</a></li>
-    <li><a href="#gal">Galerie</a></li>
-    <li><a href="#riserva">Kontakt</a></li>
-  </ul>
-  <button class="nav-cta" onclick="document.getElementById('riserva').scrollIntoView({behavior:'smooth'})">Reservieren</button>
-  <div class="nav-ham"><span></span><span></span><span></span></div>
+<nav>
+  <a href="#" class="nav-logo">Bella Italia</a>
+  <div class="nav-links">
+    <a href="#speisekarte">Speisekarte</a>
+    <a href="#kueche">Küche</a>
+    <a href="#galerie">Galerie</a>
+    <a href="#kontakt">Kontakt</a>
+  </div>
+  <a href="#kontakt" class="nav-cta">Tisch reservieren</a>
 </nav>
 
-<section class="hero">
-  <div class="hero-slides" id="hs">
-    <div class="hero-slide active"><img src="https://picsum.photos/id/493/1920/1080" alt="Essen"></div>
-    <div class="hero-slide"><img src="https://picsum.photos/id/431/1920/1080" alt="Küche"></div>
-    <div class="hero-slide"><img src="https://picsum.photos/id/312/1920/1080" alt="Atmosphäre"></div>
-    <div class="hero-slide"><img src="https://picsum.photos/id/999/1920/1080" alt="Dolci"></div>
-    <div class="hero-slide"><img src="https://picsum.photos/id/292/1920/1080" alt="Ambiente"></div>
+<!-- HERO SLIDESHOW -->
+<div class="hero">
+  <div class="hero-track">
+    <div class="hero-slide on" style="background-image:url('https://picsum.photos/id/292/1600/1000')"></div>
+    <div class="hero-slide" style="background-image:url('https://picsum.photos/id/429/1600/1000')"></div>
+    <div class="hero-slide" style="background-image:url('https://picsum.photos/id/431/1600/1000')"></div>
+    <div class="hero-slide" style="background-image:url('https://picsum.photos/id/493/1600/1000')"></div>
+    <div class="hero-slide" style="background-image:url('https://picsum.photos/id/452/1600/1000')"></div>
   </div>
-  <div class="hero-ov"></div>
-  <div class="hero-cnt">
-    <div class="hero-eye">Seit 1987 · Toskana trifft Wien</div>
-    <h1 class="hero-h1">Bella<em>Italia</em></h1>
-    <p class="hero-sub">Traditionelle toskanische Küche — mit Leidenschaft und familiären Rezepten aus der Toskana direkt in deiner Stadt.</p>
+  <div class="hero-overlay"></div>
+  <div class="hero-card">
+    <div class="hero-eye">Ristorante · Wien, 1. Bezirk</div>
+    <h1 class="hero-h">Toskana<br>trifft <em>Wien.</em></h1>
+    <p class="hero-p">Authentische toskanische Küche, hausgemachte Pasta und über 80 handverlesene Weine Italiens — täglich frisch für euch seit 1987.</p>
     <div class="hero-btns">
-      <button class="btn-p" onclick="document.getElementById('riserva').scrollIntoView({behavior:'smooth'})">Tisch Reservieren</button>
-      <button class="btn-s" onclick="document.getElementById('karte').scrollIntoView({behavior:'smooth'})">Speisekarte</button>
+      <a href="#kontakt" class="btn-primary">Tisch reservieren</a>
+      <a href="#speisekarte" class="btn-outline">Speisekarte</a>
     </div>
   </div>
-  <div class="hero-dots" id="hd"></div>
-  <div class="hero-scroll">Scroll</div>
-</section>
+</div>
 
-<section class="sec spec" id="spec">
-  <div class="spec-in">
-    <div class="spec-hd">
-      <div>
-        <div class="eye">Unsere Empfehlungen</div>
-        <h2 class="h2">Oggi <em>Consigliamo</em></h2>
+<!-- TRUST -->
+<div class="trust">
+  <div class="trust-item"><div class="trust-dot"></div>Seit 1987 in Wien</div>
+  <div class="trust-item"><div class="trust-dot"></div>Täglich frische Zutaten</div>
+  <div class="trust-item"><div class="trust-dot"></div>Hausgemachte Pasta</div>
+  <div class="trust-item"><div class="trust-dot"></div>4.9 ★ auf Google (480 Bewertungen)</div>
+  <div class="trust-item"><div class="trust-dot"></div>Privat buchbar</div>
+</div>
+
+<!-- SPEISEKARTE -->
+<section id="speisekarte">
+  <div class="sec-label">Unsere Küche</div>
+  <h2 class="sec-h">Eine Reise durch die Toskana</h2>
+  <p class="sec-p">Jedes Gericht erzählt eine Geschichte — von sonnigen Feldern, kleinen Märkten und drei Generationen Kochkunst.</p>
+  <div class="menu-grid">
+    <div class="menu-card">
+      <div class="menu-img" style="background-image:url('https://picsum.photos/id/326/600/400')">
+        <div class="menu-tag">Antipasti</div>
       </div>
-      <p class="lead">Drei Gerichte, die unsere Küche am besten beschreiben. Täglich frisch zubereitet.</p>
-    </div>
-    <div class="spec-grid">
-      <div class="dish">
-        <img src="https://picsum.photos/id/431/800/1067" alt="Pasta">
-        <div class="dish-ov">
-          <div class="dish-tag">Hausgemacht · Primo</div>
-          <div class="dish-nm">Pasta Fresca al Tartufo</div>
-          <div class="dish-desc">Handgezogene Tagliatelle mit schwarzem Trüffel, Parmigiano und Butter</div>
-          <div class="dish-price">ab 18,50 €</div>
-        </div>
-      </div>
-      <div class="dish">
-        <img src="https://picsum.photos/id/326/800/1067" alt="Pesce">
-        <div class="dish-ov">
-          <div class="dish-tag">Fang des Tages · Secondo</div>
-          <div class="dish-nm">Branzino al Forno</div>
-          <div class="dish-desc">Wolfsbarsch aus dem Ofen, Kapernbutter, Ofengemüse, Polenta cremosa</div>
-          <div class="dish-price">ab 26,00 €</div>
-        </div>
-      </div>
-      <div class="dish">
-        <img src="https://picsum.photos/id/999/800/1067" alt="Dolci">
-        <div class="dish-ov">
-          <div class="dish-tag">Dessert · Dolci</div>
-          <div class="dish-nm">Panna Cotta al Limone</div>
-          <div class="dish-desc">Klassische Panna Cotta mit Limoncello-Coulis und kandierten Zesten</div>
-          <div class="dish-price">ab 8,50 €</div>
+      <div class="menu-body">
+        <div class="menu-title">Antipasto della casa</div>
+        <div class="menu-desc">Hausgemachte Auswahl — Bruschetta, Vitello tonnato, eingelegte Oliven und Prosciutto di Parma 24 Monate.</div>
+        <div class="menu-items">
+          <span data-price="€ 14,50">Bruschetta al pomodoro</span>
+          <span data-price="€ 18,00">Vitello tonnato</span>
+          <span data-price="€ 24,00">Antipasto misto (2 Pers.)</span>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="sec karte" id="karte">
-  <div class="karte-in">
-    <div class="karte-hd">
-      <div class="eye">La Nostra</div>
-      <h2 class="h2">Speise<em>karte</em></h2>
-    </div>
-    <div class="tabs">
-      <button class="tab on" onclick="sw('ant',this)">Antipasti</button>
-      <button class="tab" onclick="sw('pas',this)">Pasta & Risotto</button>
-      <button class="tab" onclick="sw('sec',this)">Secondi</button>
-      <button class="tab" onclick="sw('dol',this)">Dolci</button>
-      <button class="tab" onclick="sw('vin',this)">Vini</button>
-    </div>
-    <div id="ant" class="panel on">
-      <div class="mi-grid">
-        <div class="mi"><div class="mi-img"><img src="https://picsum.photos/id/493/160/160" alt=""></div><div><div class="mi-nm">Burrata con Pomodori</div><div class="mi-desc">Frische Burrata, Heirloom-Tomaten, Basilikum-Öl, Fleur de Sel</div><div class="mi-price">12,50 €</div></div></div>
-        <div class="mi"><div class="mi-img"><img src="https://picsum.photos/id/312/160/160" alt=""></div><div><div class="mi-nm">Carpaccio di Manzo</div><div class="mi-desc">Rindercarpaccio, Rucola, Parmigiano Reggiano, Trüffelöl</div><div class="mi-price">15,00 €</div></div></div>
-        <div class="mi"><div class="mi-img"><img src="https://picsum.photos/id/429/160/160" alt=""></div><div><div class="mi-nm">Zuppa di Farro</div><div class="mi-desc">Traditionelle Dinkelsuppe nach toskanischer Art mit Kräuter-Croutons</div><div class="mi-price">9,00 €</div></div></div>
-        <div class="mi"><div class="mi-img"><img src="https://picsum.photos/id/102/160/160" alt=""></div><div><div class="mi-nm">Tagliere Misto</div><div class="mi-desc">Auswahl Affettati, Käse, Wildfeigen-Honig, Nüsse, Sauerteigbrot</div><div class="mi-price">18,00 €</div></div></div>
+    <div class="menu-card">
+      <div class="menu-img" style="background-image:url('https://picsum.photos/id/364/600/400')">
+        <div class="menu-tag">Pasta</div>
+      </div>
+      <div class="menu-body">
+        <div class="menu-title">Pasta fresca</div>
+        <div class="menu-desc">Täglich von Hand gezogene Pasta nach Original-Rezepten — Tagliatelle, Pappardelle, Gnocchi, Ravioli.</div>
+        <div class="menu-items">
+          <span data-price="€ 19,00">Tagliatelle al ragù</span>
+          <span data-price="€ 21,00">Pappardelle al cinghiale</span>
+          <span data-price="€ 18,00">Gnocchi al pomodoro e basilico</span>
+        </div>
       </div>
     </div>
-    <div id="pas" class="panel">
-      <div class="mi-grid">
-        <div class="mi"><div class="mi-img"><img src="https://picsum.photos/id/431/160/160" alt=""></div><div><div class="mi-nm">Tagliatelle al Ragù Classico</div><div class="mi-desc">Handgemachte Pasta mit langsam gekochtem Rindsragù</div><div class="mi-price">16,50 €</div></div></div>
-        <div class="mi"><div class="mi-img"><img src="https://picsum.photos/id/326/160/160" alt=""></div><div><div class="mi-nm">Risotto ai Funghi Porcini</div><div class="mi-desc">Cremiges Risotto mit Steinpilzen, Parmigiano, Trüffelöl</div><div class="mi-price">17,00 €</div></div></div>
-        <div class="mi"><div class="mi-img"><img src="https://picsum.photos/id/312/160/160" alt=""></div><div><div class="mi-nm">Pappardelle al Cinghiale</div><div class="mi-desc">Breite Pasta mit Wildschweinragù nach Nonnas Original-Rezept</div><div class="mi-price">19,00 €</div></div></div>
-        <div class="mi"><div class="mi-img"><img src="https://picsum.photos/id/999/160/160" alt=""></div><div><div class="mi-nm">Gnocchi Gorgonzola e Pere</div><div class="mi-desc">Hausgemachte Gnocchi mit cremiger Birnen-Gorgonzola-Sauce</div><div class="mi-price">15,00 €</div></div></div>
+    <div class="menu-card">
+      <div class="menu-img" style="background-image:url('https://picsum.photos/id/999/600/400')">
+        <div class="menu-tag">Dolci</div>
       </div>
-    </div>
-    <div id="sec" class="panel">
-      <div class="mi-grid">
-        <div class="mi"><div class="mi-img"><img src="https://picsum.photos/id/292/160/160" alt=""></div><div><div class="mi-nm">Bistecca alla Fiorentina</div><div class="mi-desc">Florentiner T-Bone vom österreichischen Rind (500g), Rosmarinkartoffeln, Rucola</div><div class="mi-price">48,00 €</div></div></div>
-        <div class="mi"><div class="mi-img"><img src="https://picsum.photos/id/493/160/160" alt=""></div><div><div class="mi-nm">Pollo alla Cacciatora</div><div class="mi-desc">Jäger-Hähnchen mit Oliven, Kapern, Tomaten und Polenta</div><div class="mi-price">22,00 €</div></div></div>
-        <div class="mi"><div class="mi-img"><img src="https://picsum.photos/id/431/160/160" alt=""></div><div><div class="mi-nm">Branzino al Limone</div><div class="mi-desc">Gegrillter Wolfsbarsch, Zitronenbutter, gegrilltes Gemüse, Kapern</div><div class="mi-price">28,00 €</div></div></div>
-        <div class="mi"><div class="mi-img"><img src="https://picsum.photos/id/326/160/160" alt=""></div><div><div class="mi-nm">Agnello Scottadito</div><div class="mi-desc">Lammkotelett vom Grill, Kräuterkruste, Artischocken alla Romana</div><div class="mi-price">32,00 €</div></div></div>
-      </div>
-    </div>
-    <div id="dol" class="panel">
-      <div class="mi-grid">
-        <div class="mi"><div class="mi-img"><img src="https://picsum.photos/id/999/160/160" alt=""></div><div><div class="mi-nm">Tiramisù della Casa</div><div class="mi-desc">Klassisches Tiramisù nach Hausrezept, täglich frisch bereitet</div><div class="mi-price">7,50 €</div></div></div>
-        <div class="mi"><div class="mi-img"><img src="https://picsum.photos/id/429/160/160" alt=""></div><div><div class="mi-nm">Cantucci e Vin Santo</div><div class="mi-desc">Toskanische Mandelkekse mit Dessertwein Vin Santo DOC</div><div class="mi-price">8,00 €</div></div></div>
-        <div class="mi"><div class="mi-img"><img src="https://picsum.photos/id/493/160/160" alt=""></div><div><div class="mi-nm">Panna Cotta al Limone</div><div class="mi-desc">Panna Cotta mit Limoncello-Coulis und kandierten Limettenzesten</div><div class="mi-price">7,00 €</div></div></div>
-        <div class="mi"><div class="mi-img"><img src="https://picsum.photos/id/312/160/160" alt=""></div><div><div class="mi-nm">Budino al Cioccolato</div><div class="mi-desc">Warmer Schokoladenkuchen, flüssiger Kern, Vanilleeis</div><div class="mi-price">8,50 €</div></div></div>
-      </div>
-    </div>
-    <div id="vin" class="panel">
-      <div class="mi-grid">
-        <div class="mi"><div><div class="mi-nm">Chianti Classico DOCG</div><div class="mi-desc">Sangiovese, Toskana · Gl. 7,50 € / Flasche 36,00 €</div><div class="mi-price">ab 7,50 €</div></div></div>
-        <div class="mi"><div><div class="mi-nm">Barolo DOCG "König der Weine"</div><div class="mi-desc">Nebbiolo, Piemont · mindestens 5 Jahre gereift · Flasche</div><div class="mi-price">68,00 €</div></div></div>
-        <div class="mi"><div><div class="mi-nm">Vermentino Bianco DOC</div><div class="mi-desc">Sardinien · frisch, zitronig, mineralisch · Gl. 6,50 € / Fl. 28,00 €</div><div class="mi-price">ab 6,50 €</div></div></div>
-        <div class="mi"><div><div class="mi-nm">Prosecco Superiore DOCG</div><div class="mi-desc">Venetien, Conegliano Valdobbiadene · Gl. 5,50 € / Fl. 24,00 €</div><div class="mi-price">ab 5,50 €</div></div></div>
+      <div class="menu-body">
+        <div class="menu-title">Dolci e dessert</div>
+        <div class="menu-desc">Hausgemachtes Tiramisu, Panna cotta con frutti di bosco und die wohl beste Crostata di limone der Stadt.</div>
+        <div class="menu-items">
+          <span data-price="€ 9,00">Tiramisù della nonna</span>
+          <span data-price="€ 8,50">Panna cotta ai frutti rossi</span>
+          <span data-price="€ 10,00">Crostata di limone e mandorle</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="storia" id="storia">
-  <div class="storia-bg"><img src="https://picsum.photos/id/292/1920/900" alt="Küche"></div>
-  <div class="storia-cnt">
-    <div class="eye">La Nostra Storia</div>
-    <div class="storia-q">Kochen ist Liebe, die man essen kann.</div>
-    <p class="storia-t">Seit 1987 steht Bella Italia für authentische toskanische Küche — für Rezepte, die von Generation zu Generation weitergegeben wurden. Unser Gründer Giuseppe Ferri brachte aus dem kleinen Dorf Greve in Chianti nicht nur Zutaten, sondern die Seele seiner Nonna mit.<br><br>Wir arbeiten ausschließlich mit regionalen Produzenten zusammen und importieren ausgewählte Spezialitäten direkt aus der Toskana. Jeder Teller erzählt eine Geschichte — und diese Geschichte begann mit einer Liebe zum guten Essen.</p>
-    <div class="storia-sig">Giuseppe Ferri — Küchenchef &amp; Gründer</div>
+<!-- EDITORIAL / CHEF -->
+<div class="editorial" id="kueche">
+  <div class="editorial-photo" style="background-image:url('https://picsum.photos/id/1058/900/700')"></div>
+  <div class="editorial-text">
+    <div class="sec-label">Unsere Küche</div>
+    <h2 class="sec-h">Die Seele hinter jedem Gericht</h2>
+    <blockquote class="editorial-quote">"Gutes Essen braucht keine Worte — es spricht für sich. Ich koche so, als würde die Nonna noch neben mir stehen."</blockquote>
+    <div class="editorial-sig">— Marco Bianchi, Küchenchef seit 2008</div>
+    <p class="sec-p" style="margin-top:20px">Marcos Leidenschaft für authentische toskanische Küche zeigt sich in jedem Detail: von der Auswahl der Zutaten bis zum letzten Handgriff vor dem Anrichten. Keine Kompromisse — nur echtes Essen.</p>
+    <a href="#kontakt" class="btn-primary" style="margin-top:28px;display:inline-block">Jetzt reservieren</a>
+  </div>
+</div>
+
+<!-- GALERIE -->
+<section id="galerie">
+  <div class="sec-label">Eindrücke</div>
+  <h2 class="sec-h">Ein Abend wie in der Toskana</h2>
+  <div class="gallery-grid">
+    <div class="gallery-item" style="background-image:url('https://picsum.photos/id/493/800/600')"></div>
+    <div class="gallery-item" style="background-image:url('https://picsum.photos/id/312/800/400')"></div>
+    <div class="gallery-item" style="background-image:url('https://picsum.photos/id/429/800/400')"></div>
+    <div class="gallery-item" style="background-image:url('https://picsum.photos/id/431/800/400')"></div>
+    <div class="gallery-item" style="background-image:url('https://picsum.photos/id/292/800/400')"></div>
+    <div class="gallery-item" style="background-image:url('https://picsum.photos/id/452/800/600')"></div>
   </div>
 </section>
 
-<section class="sec gal" id="gal">
-  <div class="gal-in">
-    <div class="gal-hd">
-      <div class="eye">Impressionen</div>
-      <h2 class="h2">Unsere <em>Atmosphäre</em></h2>
+<!-- ÖFFNUNGSZEITEN -->
+<div class="hours">
+  <div class="sec-label">Öffnungszeiten</div>
+  <h2 class="sec-h" style="color:inherit">Wir freuen uns auf euch</h2>
+  <div class="hours-grid">
+    <div>
+      <div class="hour-row" id="hr-1"><span class="day">Montag</span><span>Ruhetag</span></div>
+      <div class="hour-row" id="hr-2"><span class="day">Dienstag</span><span>12:00–15:00 · 18:00–23:00</span></div>
+      <div class="hour-row" id="hr-3"><span class="day">Mittwoch</span><span>12:00–15:00 · 18:00–23:00</span></div>
+      <div class="hour-row" id="hr-4"><span class="day">Donnerstag</span><span>12:00–15:00 · 18:00–23:00</span></div>
     </div>
-    <div class="gal-grid">
-      <div class="gi g1"><img src="https://picsum.photos/id/493/800/560" alt=""></div>
-      <div class="gi g2"><img src="https://picsum.photos/id/431/640/280" alt=""></div>
-      <div class="gi g3"><img src="https://picsum.photos/id/312/480/280" alt=""></div>
-      <div class="gi g4"><img src="https://picsum.photos/id/999/480/280" alt=""></div>
-      <div class="gi g5"><img src="https://picsum.photos/id/429/640/280" alt=""></div>
+    <div>
+      <div class="hour-row" id="hr-5"><span class="day">Freitag</span><span>12:00–15:00 · 18:00–24:00</span></div>
+      <div class="hour-row" id="hr-6"><span class="day">Samstag</span><span>12:00–24:00</span></div>
+      <div class="hour-row" id="hr-0"><span class="day">Sonntag</span><span>12:00–22:00</span></div>
     </div>
   </div>
-</section>
+</div>
 
-<section class="sec orari" id="orari">
-  <div class="orari-in">
-    <div class="orari-hd">
-      <div class="eye">Öffnungszeiten</div>
-      <h2 class="h2">Wann wir <em>da sind</em></h2>
+<!-- KONTAKT -->
+<section id="kontakt">
+  <div class="sec-label">Reservierung</div>
+  <h2 class="sec-h">Ihren Tisch reservieren</h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>Bella Italia – Ristorante & Vineria</h3>
+      <p>Herzlich willkommen im Bella Italia — Österreichs Original seit 1987. Wir reservieren Ihren Tisch gerne telefonisch oder über das Formular. Für Gruppen ab 8 Personen und private Events kontaktieren Sie uns bitte direkt.</p>
+      <div class="contact-detail"><div><strong>Adresse</strong>Kärntner Straße 24, 1010 Wien</div></div>
+      <div class="contact-detail"><div><strong>Telefon</strong>+43 1 512 34 56</div></div>
+      <div class="contact-detail"><div><strong>E-Mail</strong>reservierung@bella-italia.at</div></div>
     </div>
-    <div class="o-grid" id="og"></div>
-    <p style="font-size:13px;color:var(--fg-muted)">Reservierungen empfohlen. Gruppen ab 8 Personen bitte telefonisch anfragen.</p>
-  </div>
-</section>
-
-<section class="sec riserva" id="riserva">
-  <div class="riserva-in">
-    <div class="riserva-info">
-      <div class="eye">Reservierung</div>
-      <h2 class="h2">Ihren Tisch <em>reservieren</em></h2>
-      <div class="riserva-items">
-        <div class="ri"><div class="ri-ico">📍</div><div><div class="ri-label">Adresse</div><div class="ri-val">Musterstraße 12, 1010 Wien</div></div></div>
-        <div class="ri"><div class="ri-ico">📞</div><div><div class="ri-label">Telefon</div><div class="ri-val">+43 1 234 567 89</div></div></div>
-        <div class="ri"><div class="ri-ico">📧</div><div><div class="ri-label">E-Mail</div><div class="ri-val">info@bellaitalia.at</div></div></div>
-        <div class="ri"><div class="ri-ico">⏰</div><div><div class="ri-label">Antwort</div><div class="ri-val">Innerhalb von 2 Stunden</div></div></div>
+    <form onsubmit="return false">
+      <div class="form-row">
+        <input type="text" placeholder="Vorname" required>
+        <input type="text" placeholder="Nachname" required>
       </div>
-    </div>
-    <form onsubmit="this.querySelector('.f-sub').textContent='✓ Anfrage gesendet!';return false">
-      <div class="f-row"><div class="f-field"><input class="f-in" type="text" placeholder="Vorname"></div><div class="f-field"><input class="f-in" type="text" placeholder="Nachname"></div></div>
-      <div class="f-row"><div class="f-field"><input class="f-in" type="date"></div><div class="f-field"><select class="f-in"><option value="">Uhrzeit</option><option>12:00</option><option>12:30</option><option>13:00</option><option>18:00</option><option>18:30</option><option>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option></select></div></div>
-      <div class="f-row"><div class="f-field"><select class="f-in"><option value="">Personen</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5–6</option><option>7+</option></select></div><div class="f-field"><input class="f-in" type="tel" placeholder="Telefon"></div></div>
-      <div class="f-field"><textarea class="f-in" rows="3" placeholder="Besondere Wünsche, Allergien …"></textarea></div>
-      <button class="f-sub">Tisch reservieren</button>
+      <div class="form-row">
+        <input type="email" placeholder="E-Mail-Adresse" required>
+        <input type="tel" placeholder="Telefon">
+      </div>
+      <div class="form-row">
+        <input type="date" placeholder="Datum">
+        <select><option value="">Uhrzeit wählen</option><option>12:00</option><option>13:00</option><option>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option></select>
+      </div>
+      <div class="form-row">
+        <select><option value="">Personenanzahl</option><option>1–2 Personen</option><option>3–4 Personen</option><option>5–6 Personen</option><option>7–8 Personen</option><option>Gruppe 9+</option></select>
+        <select><option value="">Anlass</option><option>Dinner</option><option>Geburtstag</option><option>Jubiläum</option><option>Business</option></select>
+      </div>
+      <textarea placeholder="Besondere Wünsche, Allergien oder Anmerkungen…"></textarea>
+      <button type="submit" class="btn-primary" style="cursor:pointer;font-size:13px;padding:14px">Reservierung anfragen</button>
     </form>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <div class="foot-in">
-    <div class="foot-brand">Bella <em>Italia</em></div>
-    <nav class="foot-nav">
-      <a href="#spec">Specialità</a><a href="#karte">Speisekarte</a><a href="#storia">Storia</a><a href="#gal">Galerie</a><a href="#riserva">Reservierung</a><a href="#">Impressum</a>
-    </nav>
+  <div class="footer-top">
+    <div class="footer-logo">Bella Italia</div>
+    <div class="footer-links">
+      <a href="#">Speisekarte</a><a href="#">Weinkarte</a><a href="#">Galerie</a><a href="#">Presse</a><a href="#">Datenschutz</a><a href="#">Impressum</a>
+    </div>
   </div>
-  <div class="foot-copy">© 2026 Bella Italia · Traditionelle toskanische Küche seit 1987</div>
+  <div class="footer-bottom">
+    <span>© 2024 Bella Italia GmbH · Kärntner Straße 24, 1010 Wien</span>
+    <span>Webdesign: Nordlicht Studio</span>
+  </div>
 </footer>
 
-<button id="fab" onclick="document.getElementById('panel').classList.toggle('open')">⚙</button>
-<div id="panel">
-  <div class="pt">Stil</div>
-  <div class="sbs">
-    <button class="sb on" onclick="ss('classico',this)">🍷 Classico</button>
-    <button class="sb" onclick="ss('moderno',this)">🌿 Moderno</button>
-    <button class="sb" onclick="ss('rustico',this)">🪵 Rustico</button>
+<!-- FAB STYLE SWITCHER -->
+<div id="fab">
+  <div id="fab-menu">
+    <button class="fab-opt on" onclick="setTheme('')">☀️ Classico</button>
+    <button class="fab-opt" onclick="setTheme('thm-verde')">🌿 Verde</button>
+    <button class="fab-opt" onclick="setTheme('thm-notte')">🌙 Notte</button>
   </div>
+  <button id="fab-btn" onclick="document.getElementById('fab-menu').classList.toggle('open')">🎨</button>
 </div>
 
 <script>
-(function(){
-  const slides=document.querySelectorAll('.hero-slide'),dc=document.getElementById('hd');
-  let cur=0,t;
-  slides.forEach((_,i)=>{const d=document.createElement('div');d.className='h-dot'+(i===0?' active':'');d.onclick=()=>go(i);dc.appendChild(d)});
-  function go(n){slides[cur].classList.remove('active');dc.children[cur].classList.remove('active');cur=n;slides[cur].classList.add('active');dc.children[cur].classList.add('active');clearInterval(t);t=setInterval(()=>go((cur+1)%slides.length),5500)}
-  t=setInterval(()=>go((cur+1)%slides.length),5500);
-})();
+// SLIDESHOW
+const slides=document.querySelectorAll('.hero-slide');
+let cur=0;
+setInterval(()=>{slides[cur].classList.remove('on');cur=(cur+1)%slides.length;slides[cur].classList.add('on')},4500);
 
-window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>60),{passive:true});
+// THEME
+function setTheme(cls){
+  document.body.className=cls;
+  document.querySelectorAll('.fab-opt').forEach(b=>b.classList.remove('on'));
+  event.target.classList.add('on');
+  document.getElementById('fab-menu').classList.remove('open');
+  localStorage.setItem('restaurant-theme',cls);
+}
+const saved=localStorage.getItem('restaurant-theme');
+if(saved)setTheme(saved)||document.querySelectorAll('.fab-opt').forEach(b=>{if(b.onclick.toString().includes("'"+saved+"'"))b.classList.add('on')});
 
-function sw(id,btn){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));document.getElementById(id).classList.add('on');btn.classList.add('on')}
-
-const HR=[{d:'Montag',t:'Ruhetag',cl:true},{d:'Dienstag',t:'11:30 – 14:30 · 17:30 – 22:00'},{d:'Mittwoch',t:'11:30 – 14:30 · 17:30 – 22:00'},{d:'Donnerstag',t:'11:30 – 14:30 · 17:30 – 22:00'},{d:'Freitag',t:'11:30 – 14:30 · 17:30 – 23:00'},{d:'Samstag',t:'11:30 – 23:00'},{d:'Sonntag',t:'11:30 – 22:00'}];
-const td=new Date().getDay(),og=document.getElementById('og');
-HR.forEach((h,i)=>{const isT=i===((td+6)%7);og.innerHTML+=`<div class="o-row${isT?' today':''}" ${h.cl?'style="opacity:.4"':''}><span class="o-day">${h.d}${isT?' <span style="font-size:10px;color:var(--gold)">· Heute</span>':''}</span><span class="o-time">${h.t}</span></div>`});
-
-const ST={classico:{'--gold':'#c9893a','--gold-lt':'#e8b96a','--bg':'#0a0501','--bg2':'#130c06','--bg3':'#1c1108'},moderno:{'--gold':'#4a9b6f','--gold-lt':'#72c496','--bg':'#030a05','--bg2':'#070f09','--bg3':'#0c180e'},rustico:{'--gold':'#a07040','--gold-lt':'#c89860','--bg':'#080501','--bg2':'#120b06','--bg3':'#1a1008'}};
-function ss(s,btn){document.querySelectorAll('.sb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');Object.entries(ST[s]).forEach(([k,v])=>document.documentElement.style.setProperty(k,v));try{localStorage.setItem('bi_s',s)}catch(e){}}
-try{const s=localStorage.getItem('bi_s');if(s&&ST[s]){const i=Object.keys(ST).indexOf(s);ss(s,document.querySelectorAll('.sb')[i])}}catch(e){}
+// TODAY HIGHLIGHT
+const day=new Date().getDay();
+const el=document.getElementById('hr-'+day);
+if(el)el.classList.add('today');
 </script>
+</body>
+</html>

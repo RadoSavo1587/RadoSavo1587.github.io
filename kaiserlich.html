@@ -1,391 +1,333 @@
-<title>kaiserlich</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>kaiserlich – Café & Konditorei Wien</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap">
 <style>
 :root{
-  --bg:#faf4ed;--bg2:#f2e8d9;--bg3:#ede0cc;
-  --fg:#1e1208;--fg-muted:#7a6552;
-  --amber:#c8773a;--amber-lt:#e8a068;
-  --sage:#4a7a56;--espresso:#2c1810;
-  --border:rgba(200,119,58,.18);
-  color-scheme:light;
+  --bg:#faf6f0;--bg2:#f2e8d8;--fg:#1e1208;--fg2:#3e2a18;--fg-m:#8a6a48;
+  --ac:#c8773a;--ac-lt:#e89a60;--ac-fg:#fff;
+  --nav:#faf6f0;--nav-b:rgba(200,119,58,.12);
+  --card:#fff;--card-s:0 4px 32px rgba(200,119,58,.1);--card-b:1px solid rgba(200,119,58,.14);
+  --r:3px;--fh:'Libre Baskerville',Georgia,serif;--fb:'Inter',system-ui,sans-serif;
+  --nav-h:70px;
 }
+.thm-gruen{--ac:#4a7a56;--ac-lt:#6a9a76;--nav-b:rgba(74,122,86,.12);--card-b:1px solid rgba(74,122,86,.12)}
+.thm-dunkel{--bg:#100c08;--bg2:#1c1410;--fg:#f0e8d8;--fg2:#c8a888;--fg-m:#8a7868;--ac:#c8773a;--ac-lt:#e89a60;--nav:#100c08;--card:#1c1410;--card-s:0 4px 32px rgba(0,0,0,.5);--card-b:1px solid rgba(200,119,58,.12)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
-img{max-width:100%;display:block;object-fit:cover}
-a{color:inherit;text-decoration:none}
+body{font-family:var(--fb);background:var(--bg);color:var(--fg);line-height:1.6}
+a{text-decoration:none;color:inherit}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 max(56px,env(safe-area-inset-left,0px)) 0 max(56px,env(safe-area-inset-right,0px));height:68px;background:rgba(250,244,237,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
-.nav-logo{font-family:'Libre Baskerville',serif;font-size:20px;font-weight:700;letter-spacing:.04em;color:var(--espresso)}
-.nav-logo em{font-style:italic;color:var(--amber)}
-.nav-links{display:flex;gap:32px;list-style:none}
-.nav-links a{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-muted);transition:color .2s}
-.nav-links a:hover{color:var(--fg)}
-.nav-cta{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:10px 22px;background:var(--espresso);color:var(--bg);border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s}
-.nav-cta:hover{opacity:.8}
-.nav-ham{display:none;flex-direction:column;gap:5px;cursor:pointer}
-.nav-ham span{display:block;width:24px;height:1.5px;background:var(--fg)}
+nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(var(--nav-bg,250,246,240),.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--nav-b);transition:all .3s}
+.nav-logo{font-family:var(--fh);font-size:20px;font-style:italic;letter-spacing:.03em;color:var(--fg)}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-m);font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--ac)}
+.nav-cta{font-size:11px;padding:11px 22px;background:var(--ac);color:var(--ac-fg);letter-spacing:.08em;text-transform:uppercase;font-weight:600;border-radius:var(--r);transition:background .2s}
+.nav-cta:hover{background:var(--ac-lt)}
 
-/* HERO */
-.hero{padding-top:68px;min-height:100vh;display:grid;grid-template-columns:1.1fr .9fr;overflow:hidden;position:relative}
-.hero-img{position:relative;overflow:hidden}
-.hero-img img{width:100%;height:100%;object-fit:cover;min-height:calc(100vh - 68px)}
-.hero-img-ov{position:absolute;inset:0;background:linear-gradient(to right,transparent 60%,var(--bg) 100%)}
-.hero-txt{display:flex;flex-direction:column;justify-content:center;padding:80px 72px 80px 48px}
-.hero-tag{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:28px}
-.hero-tag::before{content:'';width:28px;height:1px;background:var(--amber)}
-.hero-h1{font-family:'Libre Baskerville',serif;font-size:clamp(44px,6vw,80px);line-height:.95;font-weight:700;margin-bottom:16px;color:var(--espresso)}
-.hero-h1 em{font-style:italic;color:var(--amber);font-weight:400;display:block}
-.hero-sub{font-size:16px;color:var(--fg-muted);line-height:1.8;margin-bottom:36px;font-weight:300;max-width:360px}
-.hero-info{display:flex;flex-direction:column;gap:12px;margin-bottom:36px;padding:24px;background:var(--bg2);border-left:3px solid var(--amber)}
-.hi-row{display:flex;justify-content:space-between;font-size:13px}
-.hi-label{color:var(--fg-muted);font-weight:500}
-.hi-val{color:var(--fg)}
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
-.btn-p{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:14px 30px;background:var(--espresso);color:var(--bg);border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s}
-.btn-p:hover{opacity:.8}
-.btn-s{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:13px 26px;border:1px solid var(--border);color:var(--fg);background:transparent;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
-.btn-s:hover{border-color:var(--fg)}
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr;min-height:auto}
-  .hero-img{height:50vh}
-  .hero-img img{min-height:50vh}
-  .hero-img-ov{background:linear-gradient(to top,var(--bg) 0%,transparent 50%)}
-  .hero-txt{padding:40px max(24px,env(safe-area-inset-left,0px)) 60px}
-}
+.hero{padding-top:var(--nav-h);display:grid;grid-template-columns:1fr 55%;min-height:100vh}
+.hero-left{padding:72px 56px;display:flex;flex-direction:column;justify-content:center;background:var(--bg)}
+.hero-right{position:relative;overflow:hidden}
+.hero-slideshow{position:absolute;inset:0}
+.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.6s ease-in-out}
+.hero-slide.on{opacity:1}
+.hero-eye{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ac);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.hero-eye::before{content:'';width:20px;height:1px;background:var(--ac)}
+.hero-h{font-family:var(--fh);font-size:50px;line-height:1.05;color:var(--fg);margin-bottom:16px;text-wrap:balance}
+.hero-h em{font-style:italic;color:var(--ac)}
+.hero-p{font-size:14px;color:var(--fg-m);line-height:1.75;margin-bottom:28px;font-weight:300;max-width:380px}
+.btn-primary{display:inline-block;font-size:12px;padding:13px 24px;background:var(--ac);color:var(--ac-fg);font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-radius:var(--r);transition:background .2s}
+.btn-primary:hover{background:var(--ac-lt)}
+.btn-outline{display:inline-block;font-size:12px;padding:12px 22px;border:1.5px solid var(--ac);color:var(--ac);font-weight:500;letter-spacing:.08em;text-transform:uppercase;border-radius:var(--r);transition:all .2s}
+.btn-outline:hover{background:var(--ac);color:#fff}
+.hero-btns{display:flex;gap:10px;margin-bottom:40px}
+.hero-info{display:flex;gap:32px;padding-top:28px;border-top:1px solid var(--card-b)}
+.info-item{font-size:12px;color:var(--fg-m)}
+.info-item strong{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);font-weight:600;margin-bottom:3px}
+.slide-dots{position:absolute;bottom:20px;right:20px;display:flex;gap:6px;z-index:5}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:all .3s}
+.dot.on{background:#fff;width:18px;border-radius:3px}
 
-/* SHARED */
-.sec{padding:96px max(56px,env(safe-area-inset-left,0px))}
-.eye{font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
-.h2{font-family:'Libre Baskerville',serif;font-size:clamp(28px,4vw,52px);line-height:1.05;font-weight:700;margin-bottom:20px;color:var(--espresso)}
-.h2 em{font-style:italic;color:var(--amber);font-weight:400}
-.lead{font-size:16px;color:var(--fg-muted);line-height:1.8;max-width:520px}
+section{padding:80px 56px}
+.sec-label{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--ac);margin-bottom:10px}
+.sec-h{font-family:var(--fh);font-size:36px;line-height:1.1;text-wrap:balance;margin-bottom:14px}
+.sec-p{font-size:14px;color:var(--fg-m);line-height:1.75;max-width:560px}
 
-/* SLIDESHOW */
-.slideshow{background:var(--espresso);padding:0;position:relative;overflow:hidden}
-.ss-wrap{position:relative;height:520px}
-@media(max-width:768px){.ss-wrap{height:300px}}
-.ss-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease}
-.ss-slide.on{opacity:1}
-.ss-slide img{width:100%;height:100%;object-fit:cover;opacity:.7}
-.ss-ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(44,24,16,.88) 35%,rgba(44,24,16,.2) 100%)}
-.ss-cnt{position:absolute;top:50%;left:max(72px,env(safe-area-inset-left,0px));transform:translateY(-50%);max-width:480px;z-index:2}
-.ss-eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber-lt);margin-bottom:16px}
-.ss-title{font-family:'Libre Baskerville',serif;font-size:clamp(28px,4vw,52px);font-style:italic;font-weight:700;line-height:1.05;color:#fff;margin-bottom:12px}
-.ss-desc{font-size:14px;color:rgba(255,255,255,.65);line-height:1.7}
-.ss-controls{position:absolute;bottom:28px;left:max(72px,env(safe-area-inset-left,0px));display:flex;gap:8px;z-index:2;align-items:center}
-.ss-dot{width:28px;height:2px;background:rgba(255,255,255,.25);cursor:pointer;transition:all .3s}
-.ss-dot.on{background:var(--amber-lt);width:44px}
-.ss-num{margin-left:16px;font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.1em}
-@media(max-width:768px){.ss-cnt{padding-left:max(24px,env(safe-area-inset-left,0px));left:0}}
+.spez-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.spez-card{background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:var(--card-s);border:var(--card-b);transition:transform .3s}
+.spez-card:hover{transform:translateY(-4px)}
+.spez-img{height:220px;background-size:cover;background-position:center;position:relative}
+.spez-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(30,18,8,.25) 0%,transparent 50%)}
+.spez-badge{position:absolute;top:14px;right:14px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;background:var(--ac);color:#fff;padding:5px 10px;border-radius:2px}
+.spez-body{padding:22px 24px 26px}
+.spez-title{font-family:var(--fh);font-size:20px;font-style:italic;margin-bottom:8px;color:var(--fg)}
+.spez-desc{font-size:12px;color:var(--fg-m);line-height:1.65;margin-bottom:14px}
+.spez-price{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--card-b);padding-top:12px}
+.spez-preis{font-size:15px;font-weight:600;color:var(--ac)}
+.spez-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-m)}
 
-/* ÜBER UNS */
-.ueber{background:var(--bg)}
-.ueber-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-@media(max-width:820px){.ueber-in{grid-template-columns:1fr;gap:40px}}
-.ueber-img{position:relative}
-.ueber-img-main{aspect-ratio:.85;overflow:hidden}
-.ueber-img-main img{width:100%;height:100%;object-fit:cover}
-.ueber-img-badge{position:absolute;bottom:-24px;right:-24px;width:140px;height:140px;background:var(--amber);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.ueber-badge-num{font-family:'Libre Baskerville',serif;font-size:36px;font-weight:700;color:#fff;line-height:1}
-.ueber-badge-txt{font-size:11px;color:rgba(255,255,255,.8);letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
-@media(max-width:820px){.ueber-img-badge{bottom:-16px;right:-16px;width:100px;height:100px}.ueber-badge-num{font-size:26px}}
-.ueber-txt-wrap{padding-top:20px}
-.ueber-quote{font-family:'Libre Baskerville',serif;font-size:clamp(18px,2.5vw,26px);font-style:italic;line-height:1.5;color:var(--espresso);margin-bottom:24px;padding-left:20px;border-left:3px solid var(--amber)}
-.ueber-txt{font-size:15px;color:var(--fg-muted);line-height:1.9;margin-bottom:28px}
-.ueber-sig{font-family:'Libre Baskerville',serif;font-style:italic;font-size:17px;color:var(--amber)}
+.ueber{background:var(--bg2);padding:88px 56px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.ueber-photo{position:relative;border-radius:var(--r);overflow:visible}
+.ueber-img{width:100%;aspect-ratio:4/5;background-size:cover;background-position:center;border-radius:var(--r)}
+.ueber-badge{position:absolute;bottom:-16px;right:-16px;width:110px;height:110px;border-radius:50%;background:var(--ac);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.ueber-badge .num{font-family:var(--fh);font-size:28px;font-style:italic;line-height:1}
+.ueber-badge .lbl{font-size:9px;letter-spacing:.12em;text-transform:uppercase;margin-top:2px}
+.ueber-quote{font-family:var(--fh);font-size:22px;font-style:italic;line-height:1.5;color:var(--fg);border-left:3px solid var(--ac);padding-left:20px;margin:20px 0 24px}
+.ueber-sig{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);font-weight:600}
 
-/* KARTE */
-.karte{background:var(--bg2)}
-.karte-in{max-width:1100px;margin:0 auto}
-.karte-hd{margin-bottom:52px}
-.karte-cols{display:grid;grid-template-columns:1fr 1fr;gap:3px}
-@media(max-width:680px){.karte-cols{grid-template-columns:1fr}}
-.karte-col-title{font-family:'Libre Baskerville',serif;font-size:20px;font-weight:700;color:var(--espresso);margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid var(--amber);font-style:italic}
-.karte-items{display:flex;flex-direction:column;gap:1px;margin-bottom:32px}
-.karte-item{padding:16px 20px;background:var(--bg);display:flex;justify-content:space-between;align-items:start;gap:16px;transition:background .2s}
-.karte-item:hover{background:var(--bg3)}
-.ki-name{font-weight:500;font-size:14px;margin-bottom:3px}
-.ki-desc{font-size:12px;color:var(--fg-muted);line-height:1.5}
-.ki-price{font-size:14px;color:var(--amber);white-space:nowrap;font-weight:500}
+.bakery-grid{display:grid;grid-template-columns:repeat(2,1fr) 1fr;grid-template-rows:260px 180px;gap:6px;margin-top:40px}
+.bakery-item{background-size:cover;background-position:center;border-radius:var(--r);position:relative;overflow:hidden;cursor:pointer;transition:transform .3s}
+.bakery-item:hover{transform:scale(1.02)}
+.bakery-item:first-child{grid-row:1/3}
+.bakery-label{position:absolute;bottom:0;left:0;right:0;padding:16px;background:linear-gradient(transparent,rgba(30,18,8,.65));color:#fff}
+.bakery-label span{font-family:var(--fh);font-style:italic;font-size:16px}
+.bakery-label small{display:block;font-size:10px;letter-spacing:.1em;opacity:.8;text-transform:uppercase}
 
-/* GALERIE */
-.galerie{background:var(--bg3)}
-.galerie-in{max-width:1280px;margin:0 auto}
-.galerie-hd{text-align:center;margin-bottom:52px}
-.gal-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:280px 200px;gap:4px}
-.gi{overflow:hidden;cursor:pointer}
-.gi img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
-.gi:hover img{transform:scale(1.04)}
-.g1{grid-column:span 7;grid-row:span 2}
-.g2{grid-column:span 5}
-.g3{grid-column:span 3}
-.g4{grid-column:span 2}
-@media(max-width:768px){.gal-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.gi{grid-column:span 1!important;grid-row:span 1!important;aspect-ratio:1}}
+.kaffee{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:460px}
+.kaffee-photo{background-size:cover;background-position:center;position:relative}
+.kaffee-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to left,var(--bg2) 0%,transparent 50%)}
+.kaffee-text{background:var(--bg2);padding:72px 56px;display:flex;flex-direction:column;justify-content:center}
+.kaffee-list{margin-top:28px;display:grid;gap:0}
+.kaffee-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--card-b);font-size:13px}
+.kaffee-row span:last-child{color:var(--ac);font-weight:600}
 
-/* ÖFFNUNGSZEITEN */
-.oeffnung{background:var(--espresso)}
-.oeffnung-in{max-width:900px;margin:0 auto;text-align:center}
-.oeffnung .eye{color:var(--amber-lt)}
-.oeffnung .h2{color:#fff}
-.oeffnung .h2 em{color:var(--amber-lt)}
-.oeffnung-hd{margin-bottom:52px}
-.o-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:48px}
-@media(max-width:580px){.o-grid{grid-template-columns:1fr}}
-.o-row{padding:18px 28px;border:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center}
-.o-row.today{background:rgba(200,119,58,.2);border-color:rgba(200,119,58,.4)}
-.o-day{font-size:13px;font-weight:500;color:rgba(255,255,255,.75)}
-.o-time{font-size:13px;color:rgba(255,255,255,.45)}
-.o-row.today .o-day{color:#fff}.o-row.today .o-time{color:var(--amber-lt)}
+.hours{background:var(--fg);color:var(--bg);padding:80px 56px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.hours .sec-label{color:var(--ac)}
+.hours .sec-h{color:inherit}
+.hour-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:13px}
+.hour-row.today{color:var(--ac);font-weight:600}
+.hour-row.today .day::after{content:' — Heute';font-size:11px;font-weight:400}
+.hours-extra{font-size:12px;color:rgba(240,232,220,.4);line-height:1.8;margin-top:12px}
 
-/* KONTAKT */
-.kontakt{background:var(--bg)}
-.kontakt-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:start}
-@media(max-width:820px){.kontakt-in{grid-template-columns:1fr}}
-.kontakt-items{margin-top:28px;display:flex;flex-direction:column;gap:20px}
-.ki2{display:flex;gap:16px}
-.ki2-ico{width:40px;height:40px;background:var(--bg2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.ki2-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin-bottom:4px}
-.ki2-val{font-size:14px;color:var(--fg-muted)}
-.f-in{width:100%;padding:14px 18px;background:var(--bg2);border:1px solid var(--border);color:var(--fg);font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;margin-bottom:3px}
-.f-in:focus{border-color:var(--amber)}
-.f-in::placeholder{color:var(--fg-muted)}
-.f-row{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:0}
-@media(max-width:480px){.f-row{grid-template-columns:1fr}}
-.f-sub{width:100%;padding:16px;background:var(--espresso);color:var(--bg);font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s;margin-top:3px}
-.f-sub:hover{opacity:.8}
+.contact-wrap{padding:80px 56px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.contact-info h3{font-family:var(--fh);font-size:24px;font-style:italic;margin-bottom:16px}
+.contact-info p{font-size:14px;color:var(--fg-m);line-height:1.8}
+.contact-detail{margin-top:14px;font-size:13px;color:var(--fg-m)}
+.contact-detail strong{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);margin-bottom:2px}
+form{display:flex;flex-direction:column;gap:14px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+input,select,textarea{width:100%;padding:13px 16px;background:var(--card);border:1px solid var(--card-b);border-radius:var(--r);font-size:13px;color:var(--fg);font-family:var(--fb);outline:none;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--ac)}
+input::placeholder,textarea::placeholder{color:var(--fg-m)}
+textarea{resize:vertical}
 
-/* FOOTER */
-footer{background:var(--espresso);border-top:2px solid var(--amber);padding:56px max(56px,env(safe-area-inset-left,0px)) 32px}
-.foot-in{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;margin-bottom:36px}
-.foot-logo{font-family:'Libre Baskerville',serif;font-size:22px;font-style:italic;font-weight:700;color:#fff}
-.foot-logo em{color:var(--amber-lt);font-weight:400}
-.foot-nav{display:flex;gap:24px;flex-wrap:wrap}
-.foot-nav a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);transition:color .2s}
-.foot-nav a:hover{color:#fff}
-.foot-copy{max-width:1280px;margin:0 auto;font-size:12px;color:rgba(255,255,255,.3);padding-top:20px;border-top:1px solid rgba(255,255,255,.08)}
+footer{background:var(--fg);color:rgba(240,232,220,.5);padding:40px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-logo{font-family:var(--fh);font-size:22px;font-style:italic;color:rgba(240,232,220,.9)}
+.footer-links{display:flex;gap:20px}
+.footer-links a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+.footer-links a:hover{color:var(--ac)}
 
-/* FAB */
-#fab{position:fixed;bottom:24px;right:max(24px,env(safe-area-inset-right,0px));width:50px;height:50px;border-radius:50%;background:var(--espresso);color:var(--bg);border:none;font-size:18px;cursor:pointer;z-index:200;box-shadow:0 4px 20px rgba(44,24,16,.4);transition:transform .2s}
-#fab:hover{transform:scale(1.1)}
-#panel{position:fixed;bottom:84px;right:max(24px,env(safe-area-inset-right,0px));background:var(--bg);border:1px solid var(--border);padding:18px;min-width:190px;z-index:200;transform:translateY(8px) scale(.96);opacity:0;pointer-events:none;transition:all .2s;transform-origin:bottom right;box-shadow:0 8px 32px rgba(44,24,16,.12)}
-#panel.open{transform:none;opacity:1;pointer-events:all}
-.pt{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:10px}
-.sbs{display:flex;flex-direction:column;gap:4px}
-.sb{padding:8px 12px;font-size:12px;background:none;border:1px solid var(--border);color:var(--fg);cursor:pointer;text-align:left;font-family:inherit;transition:all .15s}
-.sb:hover,.sb.on{background:var(--espresso);color:var(--bg);border-color:var(--espresso)}
+#fab{position:fixed;bottom:28px;right:28px;z-index:200}
+#fab-btn{width:46px;height:46px;border-radius:50%;background:var(--ac);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.2);font-size:16px}
+#fab-menu{position:absolute;bottom:56px;right:0;background:var(--card);border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,.2);overflow:hidden;min-width:160px;display:none;border:var(--card-b)}
+#fab-menu.open{display:block}
+.fab-opt{display:block;width:100%;padding:12px 18px;font-size:12px;letter-spacing:.08em;text-align:left;background:none;border:none;cursor:pointer;color:var(--fg);font-family:var(--fb);transition:background .15s}
+.fab-opt:hover{background:var(--bg2)}
+.fab-opt.on{color:var(--ac);font-weight:600}
 
 @media(max-width:768px){
-  .nav-links,.nav-cta{display:none}
-  .nav-ham{display:flex}
-  .sec{padding:68px max(20px,env(safe-area-inset-left,0px))}
+  nav{padding:0 20px}.nav-links{display:none}
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-right{height:55vw;min-height:260px}
+  .hero-left{padding:40px 20px}.hero-h{font-size:34px}
+  section,.ueber,.kaffee-text,.hours,.contact-wrap{padding:52px 20px}
+  .ueber,.hours,.contact-wrap{grid-template-columns:1fr;gap:40px}
+  .kaffee{grid-template-columns:1fr}.kaffee-photo{height:280px}
+  .spez-grid{grid-template-columns:1fr}
+  .bakery-grid{grid-template-columns:1fr 1fr;grid-template-rows:160px 160px 160px}.bakery-item:first-child{grid-row:auto}
+  footer{flex-direction:column;padding:28px 20px;text-align:center}.footer-links{flex-wrap:wrap;justify-content:center}
 }
 </style>
+</head>
+<body>
 
 <nav>
-  <div class="nav-logo">kaiser<em>lich</em></div>
-  <ul class="nav-links">
-    <li><a href="#slideshow">Sortiment</a></li>
-    <li><a href="#ueber">Über uns</a></li>
-    <li><a href="#karte">Karte</a></li>
-    <li><a href="#galerie">Galerie</a></li>
-    <li><a href="#kontakt">Kontakt</a></li>
-  </ul>
-  <button class="nav-cta" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Tisch anfragen</button>
-  <div class="nav-ham"><span></span><span></span><span></span></div>
+  <span class="nav-logo">kaiserlich</span>
+  <div class="nav-links">
+    <a href="#spezialitaeten">Spezialitäten</a>
+    <a href="#kaffee">Kaffee</a>
+    <a href="#ueber">Über uns</a>
+    <a href="#kontakt">Kontakt</a>
+  </div>
+  <a href="#kontakt" class="nav-cta">Tisch anfragen</a>
 </nav>
 
-<section class="hero">
-  <div class="hero-img">
-    <img src="https://picsum.photos/id/431/1000/1200" alt="kaiserlich Café">
-    <div class="hero-img-ov"></div>
-  </div>
-  <div class="hero-txt">
-    <div class="hero-tag">Café · Konditorei · Backstube</div>
-    <h1 class="hero-h1">Wo Zeit<em>sich lohnt.</em></h1>
-    <p class="hero-sub">Hausgemachte Backwaren, handgefertigte Torten und Wiener Kaffeehauskultur — täglich frisch mit Liebe zum Handwerk.</p>
-    <div class="hero-info">
-      <div class="hi-row"><span class="hi-label">Mo – Fr</span><span class="hi-val">7:30 – 19:00</span></div>
-      <div class="hi-row"><span class="hi-label">Sa – So</span><span class="hi-val">8:00 – 20:00</span></div>
-      <div class="hi-row"><span class="hi-label">Frühstück</span><span class="hi-val">täglich bis 11:30</span></div>
-    </div>
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eye">Café & Konditorei · Wien, 8. Bezirk</div>
+    <h1 class="hero-h">Wo Zeit<br>sich <em>lohnt.</em></h1>
+    <p class="hero-p">Hausgemachte Backwaren, handgefertigte Torten und echte Wiener Kaffeehauskultur — täglich frisch mit Liebe seit 1998.</p>
     <div class="hero-btns">
-      <button class="btn-p" onclick="document.getElementById('karte').scrollIntoView({behavior:'smooth'})">Zur Karte</button>
-      <button class="btn-s" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Tisch anfragen</button>
+      <a href="#spezialitaeten" class="btn-primary">Sortiment entdecken</a>
+      <a href="#kontakt" class="btn-outline">Tisch anfragen</a>
+    </div>
+    <div class="hero-info">
+      <div class="info-item"><strong>Täglich</strong>7:30–20:00 Uhr</div>
+      <div class="info-item"><strong>Seit</strong>1998 in Wien</div>
+      <div class="info-item"><strong>Bewertung</strong>4.9 ★ Google</div>
     </div>
   </div>
-</section>
-
-<section class="slideshow" id="slideshow">
-  <div class="ss-wrap">
-    <div class="ss-slide on"><img src="https://picsum.photos/id/312/1920/520" alt="Pastry"><div class="ss-ov"></div></div>
-    <div class="ss-slide"><img src="https://picsum.photos/id/999/1920/520" alt="Torte"><div class="ss-ov"></div></div>
-    <div class="ss-slide"><img src="https://picsum.photos/id/429/1920/520" alt="Backwaren"><div class="ss-ov"></div></div>
-    <div class="ss-slide"><img src="https://picsum.photos/id/493/1920/520" alt="Café"><div class="ss-ov"></div></div>
-    <div class="ss-cnt" id="ss-cnt">
-      <div class="ss-eyebrow" id="ss-eye">Handgemacht · täglich frisch</div>
-      <div class="ss-title" id="ss-ttl">Wiener Mehlspeisen</div>
-      <div class="ss-desc" id="ss-dsc">Traditionelle Rezepte, modern interpretiert — von der Linzertorte bis zum Croissant</div>
+  <div class="hero-right">
+    <div class="hero-slideshow">
+      <div class="hero-slide on" style="background-image:url('https://picsum.photos/id/431/1200/900')"></div>
+      <div class="hero-slide" style="background-image:url('https://picsum.photos/id/429/1200/900')"></div>
+      <div class="hero-slide" style="background-image:url('https://picsum.photos/id/452/1200/900')"></div>
+      <div class="hero-slide" style="background-image:url('https://picsum.photos/id/225/1200/900')"></div>
+      <div class="hero-slide" style="background-image:url('https://picsum.photos/id/213/1200/900')"></div>
     </div>
-    <div class="ss-controls">
-      <div class="c-dots" id="ssd" style="display:flex;gap:8px"></div>
-      <span class="ss-num" id="ssnum">1 / 4</span>
-    </div>
-  </div>
-</section>
-
-<section class="sec ueber" id="ueber">
-  <div class="ueber-in">
-    <div class="ueber-img">
-      <div class="ueber-img-main"><img src="https://picsum.photos/id/292/700/820" alt="kaiserlich Interieur"></div>
-      <div class="ueber-img-badge"><div class="ueber-badge-num">25<span style="font-size:.5em">+</span></div><div class="ueber-badge-txt">Jahre Handwerk</div></div>
-    </div>
-    <div class="ueber-txt-wrap">
-      <div class="eye">Unsere Geschichte</div>
-      <h2 class="h2">Handwerk mit <em>Herz</em></h2>
-      <div class="ueber-quote">„Das beste Rezept ist Zeit. Zeit für gute Zutaten, Zeit für das Handwerk und Zeit für unsere Gäste."</div>
-      <p class="ueber-txt">kaiserlich wurde 1998 von Konditormeisterin Eva Brauer gegründet — mit einem Ziel: das echte Wiener Kaffeehaus neu zu denken, ohne seine Seele zu verlieren. Wir backen täglich von Hand, beziehen Mehl von regionalen Mühlen und verwenden ausschließlich Butter aus der Almregion.<br><br>Hier gibt es keine Tiefkühlprodukte, keine Convenience-Zutaten — nur das, was wir selbst essen würden.</p>
-      <div class="ueber-sig">Eva Brauer — Gründerin &amp; Konditormeisterin</div>
-    </div>
-  </div>
-</section>
-
-<section class="sec karte" id="karte">
-  <div class="karte-in">
-    <div class="karte-hd">
-      <div class="eye">Genuss</div>
-      <h2 class="h2">Unsere <em>Karte</em></h2>
-    </div>
-    <div class="karte-cols">
-      <div>
-        <div class="karte-col-title">Mehlspeisen & Torten</div>
-        <div class="karte-items">
-          <div class="karte-item"><div><div class="ki-name">Linzertorte</div><div class="ki-desc">Hausrezept aus 1998, Ribiselmarmelade, Mandeln</div></div><div class="ki-price">4,80 €</div></div>
-          <div class="karte-item"><div><div class="ki-name">Cremeschnitte</div><div class="ki-desc">Blätterteig, Vanillecreme, Staubzucker</div></div><div class="ki-price">4,20 €</div></div>
-          <div class="karte-item"><div><div class="ki-name">Sachertorte</div><div class="ki-desc">Original Wiener Art, Marillenmarmelade, Zartbitter</div></div><div class="ki-price">5,50 €</div></div>
-          <div class="karte-item"><div><div class="ki-name">Strudel</div><div class="ki-desc">Apfel oder Topfen, täglich frisch gezogen</div></div><div class="ki-price">4,50 €</div></div>
-          <div class="karte-item"><div><div class="ki-name">Croissant</div><div class="ki-desc">Butter-Croissant, hausgemacht, pur oder gefüllt</div></div><div class="ki-price">2,90 €</div></div>
-        </div>
-        <div class="karte-col-title">Frühstück (bis 11:30)</div>
-        <div class="karte-items">
-          <div class="karte-item"><div><div class="ki-name">Wiener Frühstück</div><div class="ki-desc">Semmel, Butter, Marmelade, Ei, Kaffee</div></div><div class="ki-price">9,80 €</div></div>
-          <div class="karte-item"><div><div class="ki-name">kaiserlich Brunch</div><div class="ki-desc">Wochenendbuffet Sa+So, inkl. Getränk</div></div><div class="ki-price">16,50 €</div></div>
-        </div>
-      </div>
-      <div>
-        <div class="karte-col-title">Heiße Getränke</div>
-        <div class="karte-items">
-          <div class="karte-item"><div><div class="ki-name">Großer Brauner</div><div class="ki-desc">Doppelter Espresso mit aufgeschäumter Milch</div></div><div class="ki-price">3,80 €</div></div>
-          <div class="karte-item"><div><div class="ki-name">Wiener Melange</div><div class="ki-desc">Kaffee, Milch, Milchschaum — der Klassiker</div></div><div class="ki-price">4,20 €</div></div>
-          <div class="karte-item"><div><div class="ki-name">Einspänner</div><div class="ki-desc">Mokka im Glas, Schlagobers obenauf</div></div><div class="ki-price">4,50 €</div></div>
-          <div class="karte-item"><div><div class="ki-name">Chai Latte</div><div class="ki-desc">Hausgemachter Gewürztee, aufgeschäumte Oatly</div></div><div class="ki-price">4,80 €</div></div>
-          <div class="karte-item"><div><div class="ki-name">Heiße Schokolade</div><div class="ki-desc">Echte Couverture, Schlagobers, Kakao</div></div><div class="ki-price">5,20 €</div></div>
-        </div>
-        <div class="karte-col-title">Kalt & Frisch</div>
-        <div class="karte-items">
-          <div class="karte-item"><div><div class="ki-name">Eiskaffee</div><div class="ki-desc">Kaffee, Vanilleeis, Schlagobers — Sommerklassiker</div></div><div class="ki-price">5,80 €</div></div>
-          <div class="karte-item"><div><div class="ki-name">Frischgepresster Saft</div><div class="ki-desc">Orange, Apfel oder gemischt, täglich frisch</div></div><div class="ki-price">4,50 €</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec galerie" id="galerie">
-  <div class="galerie-in">
-    <div class="galerie-hd">
-      <div class="eye">Einblicke</div>
-      <h2 class="h2">Das ist <em>kaiserlich</em></h2>
-    </div>
-    <div class="gal-grid">
-      <div class="gi g1"><img src="https://picsum.photos/id/431/900/480" alt=""></div>
-      <div class="gi g2"><img src="https://picsum.photos/id/312/640/280" alt=""></div>
-      <div class="gi g3"><img src="https://picsum.photos/id/999/480/280" alt=""></div>
-      <div class="gi g2"><img src="https://picsum.photos/id/429/640/200" alt=""></div>
-      <div class="gi g4"><img src="https://picsum.photos/id/493/320/200" alt=""></div>
-    </div>
-  </div>
-</section>
-
-<section class="sec oeffnung" id="oeffnung">
-  <div class="oeffnung-in">
-    <div class="oeffnung-hd">
-      <div class="eye">Öffnungszeiten</div>
-      <h2 class="h2">Wann wir <em>warten</em></h2>
-    </div>
-    <div class="o-grid" id="og"></div>
-    <p style="font-size:13px;color:rgba(255,255,255,.4)">Warme Küche bis 1 Stunde vor Schließung. Letzter Bestelleingang für Torten 48h vorher.</p>
-  </div>
-</section>
-
-<section class="sec kontakt" id="kontakt">
-  <div class="kontakt-in">
-    <div>
-      <div class="eye">Kontakt & Anfahrt</div>
-      <h2 class="h2">Wir freuen uns <em>auf dich</em></h2>
-      <div class="kontakt-items">
-        <div class="ki2"><div class="ki2-ico">📍</div><div><div class="ki2-label">Adresse</div><div class="ki2-val">Musterstraße 24, 1010 Wien</div></div></div>
-        <div class="ki2"><div class="ki2-ico">📞</div><div><div class="ki2-label">Telefon</div><div class="ki2-val">+43 1 234 567 00</div></div></div>
-        <div class="ki2"><div class="ki2-ico">📧</div><div><div class="ki2-label">E-Mail</div><div class="ki2-val">hallo@kaiserlich.at</div></div></div>
-        <div class="ki2"><div class="ki2-ico">🎂</div><div><div class="ki2-label">Tortenbuchung</div><div class="ki2-val">Individuelle Torten bitte 48h vorher anfragen</div></div></div>
-      </div>
-    </div>
-    <form onsubmit="this.querySelector('.f-sub').textContent='✓ Anfrage gesendet!';return false">
-      <div class="f-row"><input class="f-in" type="text" placeholder="Vorname"><input class="f-in" type="text" placeholder="Nachname"></div>
-      <input class="f-in" type="email" placeholder="E-Mail-Adresse">
-      <select class="f-in"><option value="">Anfrage bezüglich …</option><option>Tischreservierung</option><option>Tortenbuchung (Hochzeit)</option><option>Tortenbuchung (Geburtstag)</option><option>Catering / Event</option><option>Allgemeine Frage</option></select>
-      <textarea class="f-in" rows="4" placeholder="Deine Nachricht …"></textarea>
-      <button class="f-sub">Nachricht senden</button>
-    </form>
-  </div>
-</section>
-
-<footer>
-  <div class="foot-in">
-    <div class="foot-logo">kaiser<em>lich</em></div>
-    <nav class="foot-nav">
-      <a href="#slideshow">Sortiment</a><a href="#ueber">Über uns</a><a href="#karte">Karte</a><a href="#galerie">Galerie</a><a href="#kontakt">Kontakt</a><a href="#">Impressum</a>
-    </nav>
-  </div>
-  <div class="foot-copy">© 2026 kaiserlich · Café & Konditorei · Handwerk seit 1998</div>
-</footer>
-
-<button id="fab" onclick="document.getElementById('panel').classList.toggle('open')">⚙</button>
-<div id="panel">
-  <div class="pt">Stil</div>
-  <div class="sbs">
-    <button class="sb on" onclick="ss('warm',this)">☕ Warm (Standard)</button>
-    <button class="sb" onclick="ss('botanical',this)">🌿 Botanical (Grün)</button>
-    <button class="sb" onclick="ss('dunkel',this)">🌙 Dunkel (Nacht)</button>
+    <div class="slide-dots" id="dots"></div>
   </div>
 </div>
 
+<section id="spezialitaeten">
+  <div class="sec-label">Aus der Backstube</div>
+  <h2 class="sec-h">Rezepte seit drei Generationen</h2>
+  <p class="sec-p">Jedes Stück ist handgefertigt — kein Industriezucker, keine Fertigmischungen, nur ehrliche Zutaten und viel Zeit.</p>
+  <div class="spez-grid">
+    <div class="spez-card">
+      <div class="spez-img" style="background-image:url('https://picsum.photos/id/292/700/440')">
+        <div class="spez-badge">Klassiker</div>
+      </div>
+      <div class="spez-body">
+        <div class="spez-title">Wiener Mehlspeisen</div>
+        <div class="spez-desc">Linzertorte, Cremeschnitte, Sachertorte, Apfelstrudel — traditionelle Rezepte, die seit 25 Jahren funktionieren und begeistern.</div>
+        <div class="spez-price"><span class="spez-preis">ab € 4,50</span><span class="spez-label">pro Stück</span></div>
+      </div>
+    </div>
+    <div class="spez-card">
+      <div class="spez-img" style="background-image:url('https://picsum.photos/id/364/700/440')">
+        <div class="spez-badge">Neu</div>
+      </div>
+      <div class="spez-body">
+        <div class="spez-title">Petit Fours & Pralinen</div>
+        <div class="spez-desc">Feine Petit Fours, handgezogene Pralinen und Konfekt — ideal als Gastgeschenk oder für besondere Anlässe.</div>
+        <div class="spez-price"><span class="spez-preis">ab € 2,80</span><span class="spez-label">pro Stück</span></div>
+      </div>
+    </div>
+    <div class="spez-card">
+      <div class="spez-img" style="background-image:url('https://picsum.photos/id/999/700/440')">
+        <div class="spez-badge">Auf Bestellung</div>
+      </div>
+      <div class="spez-body">
+        <div class="spez-title">Individuelle Torten</div>
+        <div class="spez-desc">Hochzeits-, Geburtstags- und Festtagstorten nach Maß. Beratungsgespräch, Probiertermin und Lieferung auf Wunsch.</div>
+        <div class="spez-price"><span class="spez-preis">ab € 68</span><span class="spez-label">je nach Größe</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ueber" id="ueber">
+  <div class="ueber-photo">
+    <div class="ueber-img" style="background-image:url('https://picsum.photos/id/1058/700/900')"></div>
+    <div class="ueber-badge"><span class="num">25+</span><span class="lbl">Jahre</span></div>
+  </div>
+  <div>
+    <div class="sec-label">Seit 1998</div>
+    <h2 class="sec-h">Eine Wiener Institution</h2>
+    <blockquote class="ueber-quote">"Wir backen keine Torten für Fotos. Wir backen sie, damit sie gegessen werden — mit Genuss, mit Gesellschaft, mit Zeit."</blockquote>
+    <div class="ueber-sig">— Renate Kaiser, Inhaberin</div>
+    <p class="sec-p" style="margin-top:20px">Was als kleines Familienunternehmen im 8. Bezirk begann, ist heute eines der beliebtesten Cafés Wiens. Renates Enkelin Marie steht heute neben ihr am Herd und trägt die Tradition in die nächste Generation.</p>
+    <a href="#kontakt" class="btn-primary" style="margin-top:28px;display:inline-block">Tisch anfragen</a>
+  </div>
+</div>
+
+<section style="padding-bottom:0">
+  <div class="sec-label">Eindrücke</div>
+  <h2 class="sec-h">Täglich frisch aus der Backstube</h2>
+  <div class="bakery-grid">
+    <div class="bakery-item" style="background-image:url('https://picsum.photos/id/312/900/900')"><div class="bakery-label"><small>Hausspezialität</small><span>Linzertorte</span></div></div>
+    <div class="bakery-item" style="background-image:url('https://picsum.photos/id/429/600/280')"><div class="bakery-label"><small>Täglich</small><span>Frühstücksgebäck</span></div></div>
+    <div class="bakery-item" style="background-image:url('https://picsum.photos/id/431/600/280')"><div class="bakery-label"><small>Klassiker</small><span>Sachertorte</span></div></div>
+    <div class="bakery-item" style="background-image:url('https://picsum.photos/id/452/600/200')"><div class="bakery-label"><small>Auf Bestellung</small><span>Hochzeitstorten</span></div></div>
+    <div class="bakery-item" style="background-image:url('https://picsum.photos/id/213/600/200')"><div class="bakery-label"><small>Saisonal</small><span>Petit Fours</span></div></div>
+  </div>
+</section>
+
+<div class="kaffee" id="kaffee">
+  <div class="kaffee-photo" style="background-image:url('https://picsum.photos/id/225/900/700')"></div>
+  <div class="kaffee-text">
+    <div class="sec-label">Kaffeekarte</div>
+    <h2 class="sec-h">Wiener Kaffeekultur</h2>
+    <p class="sec-p">Von der Melange bis zum großen Braunen — wir nehmen Kaffee ernst. Frisch gemahlene Bohnen aus der Wiener Rösterei Kaffee Czar.</p>
+    <div class="kaffee-list">
+      <div class="kaffee-row"><span>Melange</span><span>€ 4,20</span></div>
+      <div class="kaffee-row"><span>Einspänner</span><span>€ 4,80</span></div>
+      <div class="kaffee-row"><span>Großer Brauner</span><span>€ 4,00</span></div>
+      <div class="kaffee-row"><span>Cappuccino</span><span>€ 4,50</span></div>
+      <div class="kaffee-row"><span>Wiener Eiskaffee</span><span>€ 6,80</span></div>
+      <div class="kaffee-row"><span>Türkischer Kaffee</span><span>€ 4,80</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="hours">
+  <div>
+    <div class="sec-label">Öffnungszeiten</div>
+    <h2 class="sec-h">Jeden Tag für euch da</h2>
+    <p style="font-size:13px;color:rgba(240,232,220,.5);margin-top:12px">Warme Küche bis 18:00 Uhr. Frühstück täglich 7:30–11:00 Uhr.</p>
+  </div>
+  <div>
+    <div class="hour-row" id="hr-1"><span class="day">Montag</span><span>7:30–20:00 Uhr</span></div>
+    <div class="hour-row" id="hr-2"><span class="day">Dienstag</span><span>7:30–20:00 Uhr</span></div>
+    <div class="hour-row" id="hr-3"><span class="day">Mittwoch</span><span>7:30–20:00 Uhr</span></div>
+    <div class="hour-row" id="hr-4"><span class="day">Donnerstag</span><span>7:30–20:00 Uhr</span></div>
+    <div class="hour-row" id="hr-5"><span class="day">Freitag</span><span>7:30–21:00 Uhr</span></div>
+    <div class="hour-row" id="hr-6"><span class="day">Samstag</span><span>8:00–21:00 Uhr</span></div>
+    <div class="hour-row" id="hr-0"><span class="day">Sonntag</span><span>9:00–18:00 Uhr</span></div>
+    <div class="hours-extra">Feiertage: 10:00–17:00 · Heiligabend geschlossen</div>
+  </div>
+</div>
+
+<div class="contact-wrap" id="kontakt">
+  <div class="contact-info">
+    <h3>Besuchen Sie uns</h3>
+    <p>Für Gruppen ab 10 Personen bitten wir um telefonische Voranmeldung. Tortenbuchungen bitte 48h im Voraus.</p>
+    <div class="contact-detail"><strong>Adresse</strong>Josefstädter Straße 42, 1080 Wien</div>
+    <div class="contact-detail"><strong>Telefon</strong>+43 1 406 78 90</div>
+    <div class="contact-detail"><strong>E-Mail</strong>office@kaiserlich.at</div>
+    <div class="contact-detail"><strong>Tortenbuchungen</strong>torten@kaiserlich.at</div>
+  </div>
+  <form onsubmit="return false">
+    <div class="form-row"><input type="text" placeholder="Vorname"><input type="text" placeholder="Nachname"></div>
+    <input type="email" placeholder="E-Mail-Adresse">
+    <input type="tel" placeholder="Telefon (optional)">
+    <select><option value="">Ich interessiere mich für…</option><option>Tischreservierung</option><option>Tortenbestellung</option><option>Catering Anfrage</option><option>Allgemeine Anfrage</option></select>
+    <textarea placeholder="Ihre Nachricht…" rows="4"></textarea>
+    <button type="submit" class="btn-primary" style="cursor:pointer;padding:14px;font-size:12px">Nachricht senden</button>
+  </form>
+</div>
+
+<footer>
+  <span class="footer-logo">kaiserlich</span>
+  <div class="footer-links"><a href="#">Sortiment</a><a href="#">Tortenbuchung</a><a href="#">Über uns</a><a href="#">Datenschutz</a><a href="#">Impressum</a></div>
+  <span style="font-size:11px">© 2024 kaiserlich GmbH · Wien</span>
+</footer>
+
+<div id="fab">
+  <div id="fab-menu">
+    <button class="fab-opt on" onclick="setTheme('')">☀️ Warm</button>
+    <button class="fab-opt" onclick="setTheme('thm-gruen')">🌿 Grün</button>
+    <button class="fab-opt" onclick="setTheme('thm-dunkel')">🌙 Dunkel</button>
+  </div>
+  <button id="fab-btn" onclick="document.getElementById('fab-menu').classList.toggle('open')">🎨</button>
+</div>
+
 <script>
-// SLIDESHOW
-const SS=[
-  {eye:'Handgemacht · täglich frisch',ttl:'Wiener Mehlspeisen',dsc:'Traditionelle Rezepte, modern interpretiert — von der Linzertorte bis zum Croissant'},
-  {eye:'Konditorei · Manufaktur',ttl:'Torten nach Maß',dsc:'Individuelle Hochzeits- und Festtorten — handgefertigt, einzigartig, unvergesslich'},
-  {eye:'Regionale Zutaten',ttl:'Frisch aus der Backstube',dsc:'Täglich frisch gebackenes Brot, Brötchen und Viennoiserie seit 5 Uhr morgens'},
-  {eye:'Wiener Kaffeehauskultur',ttl:'Der perfekte Kaffee',dsc:'Von der Melange bis zum Einspänner — Kaffee so wie er in Wien seit 300 Jahren getrunken wird'}
-];
-(function(){
-  const slides=document.querySelectorAll('.ss-slide'),dc=document.getElementById('ssd');
-  let cur=0,t;
-  slides.forEach((_,i)=>{const d=document.createElement('div');d.className='ss-dot'+(i===0?' on':'');d.onclick=()=>go(i);dc.appendChild(d)});
-  function upd(){document.getElementById('ss-eye').textContent=SS[cur].eye;document.getElementById('ss-ttl').textContent=SS[cur].ttl;document.getElementById('ss-dsc').textContent=SS[cur].dsc;document.getElementById('ssnum').textContent=(cur+1)+' / '+slides.length}
-  function go(n){slides[cur].classList.remove('on');dc.children[cur].classList.remove('on');cur=(n+slides.length)%slides.length;slides[cur].classList.add('on');dc.children[cur].classList.add('on');upd();clearInterval(t);t=setInterval(()=>go(cur+1),5000)}
-  t=setInterval(()=>go(cur+1),5000);
-})();
-
-// ÖFFNUNGSZEITEN
-const HR=[{d:'Montag',t:'7:30 – 19:00'},{d:'Dienstag',t:'7:30 – 19:00'},{d:'Mittwoch',t:'7:30 – 19:00'},{d:'Donnerstag',t:'7:30 – 19:00'},{d:'Freitag',t:'7:30 – 19:00'},{d:'Samstag',t:'8:00 – 20:00'},{d:'Sonntag',t:'8:00 – 20:00'}];
-const td=new Date().getDay(),og=document.getElementById('og');
-HR.forEach((h,i)=>{const isT=i===((td+6)%7);og.innerHTML+=`<div class="o-row${isT?' today':''}"><span class="o-day">${h.d}${isT?' <span style="font-size:10px;color:var(--amber-lt)"> · Heute</span>':''}</span><span class="o-time">${h.t}</span></div>`});
-
-// STYLES
-const ST={warm:{'--bg':'#faf4ed','--bg2':'#f2e8d9','--bg3':'#ede0cc','--fg':'#1e1208','--amber':'#c8773a','--amber-lt':'#e8a068','--espresso':'#2c1810'},botanical:{'--bg':'#f4f8f4','--bg2':'#e8f0e8','--bg3':'#dce8dc','--fg':'#0e1e10','--amber':'#4a7a56','--amber-lt':'#72b080','--espresso':'#1a3020'},dunkel:{'--bg':'#0e0a06','--bg2':'#160e08','--bg3':'#1e140a','--fg':'#f2e8d8','--amber':'#c8773a','--amber-lt':'#e8a068','--espresso':'#f2e8d8'}};
-function ss(s,btn){document.querySelectorAll('.sb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');const v=ST[s];Object.entries(v).forEach(([k,vv])=>document.documentElement.style.setProperty(k,vv));document.documentElement.style.setProperty('color-scheme',s==='dunkel'?'dark':'light');try{localStorage.setItem('kl_s',s)}catch(e){}}
-try{const s=localStorage.getItem('kl_s');if(s&&ST[s]){const i=Object.keys(ST).indexOf(s);ss(s,document.querySelectorAll('.sb')[i])}}catch(e){}
+const slides=document.querySelectorAll('.hero-slide');
+const dotsEl=document.getElementById('dots');
+let cur=0;
+slides.forEach((_,i)=>{const d=document.createElement('div');d.className='dot'+(i===0?' on':'');d.onclick=()=>goTo(i);dotsEl.appendChild(d)});
+function goTo(n){slides[cur].classList.remove('on');dotsEl.children[cur].classList.remove('on');cur=n;slides[cur].classList.add('on');dotsEl.children[cur].classList.add('on')}
+setInterval(()=>goTo((cur+1)%slides.length),4500);
+function setTheme(cls){document.body.className=cls;document.querySelectorAll('.fab-opt').forEach(b=>b.classList.remove('on'));event.target.classList.add('on');document.getElementById('fab-menu').classList.remove('open');localStorage.setItem('cafe-theme',cls)}
+const sv=localStorage.getItem('cafe-theme');if(sv!==null)document.body.className=sv;
+const d=new Date().getDay();const el=document.getElementById('hr-'+d);if(el)el.classList.add('today');
 </script>
+</body>
+</html>

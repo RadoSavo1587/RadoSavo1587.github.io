@@ -1,455 +1,357 @@
-<title>König – Friseursalon & Styling</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap">
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>König Salon – Premium Friseur Wien</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap">
 <style>
 :root{
-  --bg:#080808;--bg2:#111111;--bg3:#0d0d0d;
-  --fg:#f8f5ef;--fg-muted:#888880;
-  --gold:#c9a84c;--gold-lt:#e8cc84;
-  --border:rgba(201,168,76,.14);
-  color-scheme:dark;
+  --bg:#ffffff;--bg2:#f8f4f0;--fg:#1a1210;--fg2:#3a2820;--fg-m:#8a7868;
+  --ac:#c8a07a;--ac-dk:#a07840;--ac-fg:#fff;
+  --nav:#fff;--nav-b:rgba(200,160,122,.12);
+  --card:#fff;--card-s:0 4px 32px rgba(0,0,0,.07);--card-b:1px solid rgba(200,160,122,.12);
+  --r:2px;--fh:'Cormorant Garamond',Georgia,serif;--fb:'Inter',system-ui,sans-serif;
+  --nav-h:72px;
 }
+.thm-fresh{--bg:#f4f8f4;--bg2:#e6ede6;--ac:#4a7a56;--ac-dk:#2d5a3d;--nav-b:rgba(74,122,86,.12);--card-b:1px solid rgba(74,122,86,.1)}
+.thm-noir{--bg:#0c0a08;--bg2:#181410;--fg:#f0e8d8;--fg2:#c8b898;--fg-m:#8a7868;--ac:#c9a84c;--ac-dk:#a88030;--ac-fg:#0c0a08;--nav:#0c0a08;--card:#181410;--card-s:0 4px 32px rgba(0,0,0,.5);--card-b:1px solid rgba(201,168,76,.1)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
-img{max-width:100%;display:block;object-fit:cover}
-a{color:inherit;text-decoration:none}
+body{font-family:var(--fb);background:var(--bg);color:var(--fg);line-height:1.6}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 max(56px,env(safe-area-inset-left,0px)) 0 max(56px,env(safe-area-inset-right,0px));height:72px;transition:all .4s;border-bottom:1px solid transparent}
-nav.scrolled{background:rgba(8,8,8,.95);backdrop-filter:blur(20px);border-bottom-color:var(--border)}
-.nav-logo{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;letter-spacing:.06em;color:var(--fg)}
-.nav-logo span{color:var(--gold)}
-.nav-links{display:flex;gap:36px;list-style:none}
-.nav-links a{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-muted);transition:color .2s}
-.nav-links a:hover{color:var(--fg)}
-.nav-cta{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:10px 24px;background:var(--gold);color:var(--bg);border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s}
-.nav-cta:hover{opacity:.85}
-.nav-ham{display:none;flex-direction:column;gap:5px;cursor:pointer}
-.nav-ham span{display:block;width:24px;height:1.5px;background:var(--fg)}
+nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 56px;background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--nav-b);transition:all .3s}
+.nav-logo{font-family:var(--fh);font-size:26px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--fg)}
+.nav-links{display:flex;gap:36px}
+.nav-links a{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-m);font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--ac-dk)}
+.nav-cta{font-size:11px;padding:12px 24px;background:var(--fg);color:var(--bg);letter-spacing:.1em;text-transform:uppercase;font-weight:500;border-radius:var(--r);transition:background .2s}
+.nav-cta:hover{background:var(--ac-dk)}
 
-/* HERO */
-.hero{position:relative;height:100vh;min-height:620px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
-.hero-left{display:flex;align-items:center;justify-content:flex-end;padding:100px 72px 100px max(72px,env(safe-area-inset-left,0px));background:var(--bg);position:relative;z-index:1}
-.hero-left::after{content:'';position:absolute;right:-1px;top:0;bottom:0;width:1px;background:var(--border)}
-.hero-txt{max-width:460px}
-.hero-eye{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:14px}
-.hero-eye::before{content:'';width:36px;height:1px;background:var(--gold)}
-.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(56px,8vw,110px);line-height:.88;font-weight:700;margin-bottom:16px;letter-spacing:-.01em}
-.hero-h1 em{font-style:italic;color:var(--gold);font-weight:400;display:block;font-size:.7em}
-.hero-sub{font-size:15px;color:var(--fg-muted);line-height:1.8;margin-bottom:44px;font-weight:300}
-.hero-stats{display:flex;gap:36px;margin-bottom:44px;padding-bottom:40px;border-bottom:1px solid var(--border)}
-.hero-stat-num{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:var(--gold);line-height:1}
-.hero-stat-num span{font-size:.5em;font-weight:400}
-.hero-stat-lbl{font-size:11px;color:var(--fg-muted);letter-spacing:.06em;margin-top:4px}
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
-.btn-p{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:14px 32px;background:var(--gold);color:var(--bg);border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s}
-.btn-p:hover{opacity:.85}
-.btn-s{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:13px 28px;border:1px solid rgba(248,245,239,.25);color:var(--fg);background:transparent;cursor:pointer;font-family:'Inter',sans-serif;transition:border-color .2s}
-.btn-s:hover{border-color:var(--fg)}
-.hero-right{position:relative;overflow:hidden}
-.hero-right img{width:100%;height:100%;object-fit:cover;filter:brightness(.8)}
-.hero-right-ov{position:absolute;inset:0;background:linear-gradient(to left,transparent 60%,rgba(8,8,8,.4) 100%)}
+/* HERO — SPLIT */
+.hero{display:grid;grid-template-columns:52% 1fr;min-height:100vh;margin-top:var(--nav-h)}
+.hero-photo{position:relative;overflow:hidden}
+.hero-photo img{width:100%;height:100%;object-fit:cover}
+.hero-photo-bg{position:absolute;inset:0;background-size:cover;background-position:center top}
+.hero-text{background:var(--bg2);padding:80px 60px;display:flex;flex-direction:column;justify-content:center}
+.hero-eye{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ac);margin-bottom:20px}
+.hero-h{font-family:var(--fh);font-size:52px;line-height:1.0;color:var(--fg);margin-bottom:16px;text-wrap:balance;font-weight:600}
+.hero-h em{font-style:italic;font-weight:400;color:var(--ac-dk)}
+.hero-p{font-size:14px;color:var(--fg-m);line-height:1.75;margin-bottom:28px;font-weight:300;max-width:380px}
+.btn-primary{display:inline-block;font-size:11px;padding:14px 28px;background:var(--fg);color:var(--bg);font-weight:500;letter-spacing:.12em;text-transform:uppercase;border-radius:var(--r);transition:background .2s}
+.btn-primary:hover{background:var(--ac-dk)}
+.btn-outline{display:inline-block;font-size:11px;padding:13px 24px;border:1.5px solid var(--ac);color:var(--ac-dk);font-weight:500;letter-spacing:.1em;text-transform:uppercase;border-radius:var(--r);transition:all .2s}
+.btn-outline:hover{background:var(--ac);color:#fff}
+.hero-btns{display:flex;gap:12px}
+.hero-stats{display:flex;gap:36px;margin-top:40px;padding-top:32px;border-top:1px solid var(--card-b)}
+.stat-num{font-family:var(--fh);font-size:32px;font-weight:600;color:var(--fg)}
+.stat-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-m)}
 
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr;height:auto}
-  .hero-left{padding:120px max(24px,env(safe-area-inset-left,0px)) 56px;justify-content:flex-start}
-  .hero-right{height:50vh}
-}
-
-/* SECTION */
-.sec{padding:100px max(56px,env(safe-area-inset-left,0px))}
-.eye{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
-.h2{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,56px);line-height:1.05;font-weight:700;margin-bottom:20px}
-.h2 em{font-style:italic;color:var(--gold);font-weight:400}
-.lead{font-size:16px;color:var(--fg-muted);line-height:1.8;max-width:520px}
+/* SECTIONS */
+section{padding:88px 56px}
+.sec-label{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--ac-dk);margin-bottom:10px}
+.sec-h{font-family:var(--fh);font-size:40px;line-height:1.1;text-wrap:balance;margin-bottom:14px;font-weight:600}
+.sec-p{font-size:14px;color:var(--fg-m);line-height:1.75;max-width:560px}
 
 /* LEISTUNGEN */
-.leist{background:var(--bg2)}
-.leist-in{max-width:1280px;margin:0 auto}
-.leist-hd{text-align:center;margin-bottom:64px}
-.leist-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
-@media(max-width:768px){.leist-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:480px){.leist-grid{grid-template-columns:1fr}}
-.leist-item{background:var(--bg2);padding:40px 32px;transition:background .25s}
-.leist-item:hover{background:var(--bg3)}
-.leist-icon{width:48px;height:48px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:20px;color:var(--gold)}
-.leist-nm{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;margin-bottom:8px}
-.leist-desc{font-size:13px;color:var(--fg-muted);line-height:1.7;margin-bottom:14px}
-.leist-price{font-size:14px;color:var(--gold);font-weight:500}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:48px}
+.service-card{position:relative;overflow:hidden;cursor:pointer}
+.service-img{height:360px;background-size:cover;background-position:center;transition:transform .6s}
+.service-card:hover .service-img{transform:scale(1.05)}
+.service-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,18,16,.75) 0%,rgba(26,18,16,.1) 60%,transparent 100%);transition:opacity .3s}
+.service-card:hover .service-overlay{opacity:.85}
+.service-info{position:absolute;bottom:0;left:0;right:0;padding:28px 24px;color:#fff}
+.service-tag{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,160,122,.85);margin-bottom:8px}
+.service-title{font-family:var(--fh);font-size:22px;font-weight:600;font-style:italic;margin-bottom:4px}
+.service-desc{font-size:12px;color:rgba(255,255,255,.7);line-height:1.6;max-height:0;overflow:hidden;transition:max-height .4s}
+.service-card:hover .service-desc{max-height:80px}
+.service-price{font-size:14px;font-weight:600;color:var(--ac);margin-top:8px}
 
-/* GALERIE CAROUSEL */
-.galerie{background:var(--bg)}
-.galerie-in{max-width:1280px;margin:0 auto}
-.galerie-hd{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;flex-wrap:wrap;gap:20px}
-.carousel-wrap{position:relative;overflow:hidden;border-radius:0}
-.carousel-track{display:flex;transition:transform .7s cubic-bezier(.4,0,.2,1);will-change:transform}
-.c-slide{min-width:100%;position:relative;aspect-ratio:16/9;overflow:hidden}
-@media(max-width:768px){.c-slide{aspect-ratio:4/3}}
-.c-slide img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
-.c-slide-cap{position:absolute;bottom:0;left:0;right:0;padding:28px 36px;background:linear-gradient(to top,rgba(8,8,8,.85) 0%,transparent 100%)}
-.c-slide-nm{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;margin-bottom:4px}
-.c-slide-desc{font-size:13px;color:var(--fg-muted)}
-.c-btn{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;background:rgba(8,8,8,.7);border:1px solid var(--border);color:var(--fg);font-size:18px;cursor:pointer;z-index:10;transition:all .2s;display:flex;align-items:center;justify-content:center}
-.c-btn:hover{background:var(--gold);border-color:var(--gold);color:var(--bg)}
-.c-prev{left:20px}
-.c-next{right:20px}
-.c-dots{display:flex;gap:8px;justify-content:center;margin-top:20px}
-.c-dot{width:28px;height:2px;background:rgba(255,255,255,.2);cursor:pointer;transition:all .3s}
-.c-dot.on{background:var(--gold);width:44px}
+/* EDITORIAL */
+.editorial{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:540px}
+.editorial-text{background:var(--bg2);padding:88px 60px;display:flex;flex-direction:column;justify-content:center;order:1}
+.editorial-photo{order:2;position:relative;overflow:hidden}
+.editorial-photo-bg{position:absolute;inset:0;background-size:cover;background-position:center}
 
 /* TEAM */
-.team{background:var(--bg2)}
-.team-in{max-width:1100px;margin:0 auto}
-.team-hd{text-align:center;margin-bottom:60px}
-.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
-@media(max-width:680px){.team-grid{grid-template-columns:1fr}}
-.team-card{position:relative;overflow:hidden;cursor:pointer}
-.team-photo{aspect-ratio:.8;overflow:hidden}
-.team-photo img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
-.team-card:hover .team-photo img{transform:scale(1.05)}
-.team-info{padding:24px 20px;background:var(--bg3);border:1px solid var(--border);border-top:none}
-.team-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;margin-bottom:4px}
-.team-role{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
-.team-bio{font-size:13px;color:var(--fg-muted);line-height:1.6}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.team-card{text-align:center}
+.team-photo{width:100%;aspect-ratio:3/4;background-size:cover;background-position:center top;border-radius:var(--r);margin-bottom:16px}
+.team-name{font-family:var(--fh);font-size:20px;font-style:italic;font-weight:600;margin-bottom:4px}
+.team-role{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ac-dk)}
+.team-spec{font-size:12px;color:var(--fg-m);margin-top:6px}
 
-/* PREISE */
-.preise{background:var(--bg)}
-.preise-in{max-width:1100px;margin:0 auto}
-.preise-hd{text-align:center;margin-bottom:60px}
-.preise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
-@media(max-width:680px){.preise-grid{grid-template-columns:1fr}}
-.preis-card{padding:44px 36px;border:1px solid var(--border);position:relative;transition:border-color .2s}
-.preis-card.featured{border-color:var(--gold)}
-.preis-badge{position:absolute;top:0;right:0;background:var(--gold);color:var(--bg);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px}
-.preis-tier{font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
-.preis-nm{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;margin-bottom:20px}
-.preis-price{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:700;line-height:1;margin-bottom:4px;color:var(--fg)}
-.preis-price span{font-size:.4em;font-weight:400;color:var(--fg-muted)}
-.preis-from{font-size:12px;color:var(--fg-muted);margin-bottom:28px}
-.preis-feats{list-style:none;margin-bottom:36px;display:flex;flex-direction:column;gap:12px}
-.preis-feats li{font-size:13px;color:var(--fg-muted);display:flex;align-items:center;gap:10px}
-.preis-feats li::before{content:'';width:16px;height:1px;background:var(--gold);flex-shrink:0}
-.preis-btn{width:100%;padding:14px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:transparent;border:1px solid var(--border);color:var(--fg);cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
-.preis-card.featured .preis-btn{background:var(--gold);border-color:var(--gold);color:var(--bg)}
-.preis-btn:hover{background:var(--gold);border-color:var(--gold);color:var(--bg)}
+/* PREISLISTE */
+.preise-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-top:48px}
+.preise-box{background:var(--card);border-radius:var(--r);padding:32px;border:var(--card-b);box-shadow:var(--card-s)}
+.preise-title{font-family:var(--fh);font-size:22px;font-style:italic;font-weight:600;margin-bottom:20px;color:var(--fg)}
+.preise-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--card-b);font-size:13px}
+.preise-row:last-child{border-bottom:none}
+.preise-row span:last-child{color:var(--ac-dk);font-weight:600}
 
-/* TERMIN */
-.termin{background:var(--bg2)}
-.termin-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.3fr;gap:80px;align-items:start}
-@media(max-width:880px){.termin-in{grid-template-columns:1fr}}
-.termin-perks{margin-top:32px;display:flex;flex-direction:column;gap:16px}
-.perk{display:flex;gap:14px;align-items:flex-start}
-.perk-ico{width:36px;height:36px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;color:var(--gold)}
-.perk-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
-.perk-val{font-size:13px;color:var(--fg-muted)}
-.f-in{width:100%;padding:16px 18px;background:var(--bg);border:1px solid var(--border);color:var(--fg);font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;margin-bottom:3px}
-.f-in:focus{border-color:var(--gold)}
-.f-in::placeholder{color:var(--fg-muted)}
-select.f-in{cursor:pointer}
-select.f-in option{background:var(--bg)}
-.f-row{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:0}
-@media(max-width:480px){.f-row{grid-template-columns:1fr}}
-.f-sub{width:100%;padding:17px;background:var(--gold);color:var(--bg);font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s;margin-top:3px}
-.f-sub:hover{opacity:.85}
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:220px 220px;gap:4px;margin-top:40px}
+.gallery-item{background-size:cover;background-position:center;position:relative;overflow:hidden;cursor:pointer;transition:transform .3s}
+.gallery-item:hover{transform:scale(1.02)}
+.gallery-item:first-child{grid-column:1/3;grid-row:1/2}
+.gallery-item:last-child{grid-column:3/5;grid-row:2/3}
+
+/* BUCHUNG */
+.booking-wrap{background:var(--fg);color:var(--bg);padding:88px 56px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.booking-wrap .sec-label{color:var(--ac)}
+.booking-wrap .sec-h{color:inherit}
+.booking-wrap .sec-p{color:rgba(240,232,220,.65);max-width:none}
+input,select,textarea{width:100%;padding:14px 16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);font-size:13px;color:inherit;font-family:var(--fb);outline:none;transition:border-color .2s}
+.booking-wrap input:focus,.booking-wrap select:focus{border-color:var(--ac)}
+input::placeholder{color:rgba(240,232,220,.4)}
+form{display:flex;flex-direction:column;gap:14px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+select option{background:var(--fg-m);color:#fff}
 
 /* FOOTER */
-footer{background:#050505;border-top:1px solid var(--border);padding:60px max(56px,env(safe-area-inset-left,0px)) 36px}
-.foot-in{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:28px;margin-bottom:40px}
-.foot-logo{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;letter-spacing:.06em}
-.foot-logo span{color:var(--gold)}
-.foot-nav{display:flex;gap:24px;flex-wrap:wrap}
-.foot-nav a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-muted);transition:color .2s}
-.foot-nav a:hover{color:var(--fg)}
-.foot-copy{max-width:1280px;margin:0 auto;font-size:12px;color:var(--fg-muted);padding-top:20px;border-top:1px solid var(--border)}
+footer{background:var(--bg2);padding:40px 56px;display:flex;justify-content:space-between;align-items:center;border-top:var(--card-b)}
+.footer-logo{font-family:var(--fh);font-size:22px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-m);transition:color .2s}
+.footer-links a:hover{color:var(--ac-dk)}
+.footer-copy{font-size:11px;color:var(--fg-m)}
 
 /* FAB */
-#fab{position:fixed;bottom:24px;right:max(24px,env(safe-area-inset-right,0px));width:50px;height:50px;border-radius:50%;background:var(--gold);color:var(--bg);border:none;font-size:18px;cursor:pointer;z-index:200;box-shadow:0 4px 20px rgba(201,168,76,.4);transition:transform .2s}
-#fab:hover{transform:scale(1.1)}
-#panel{position:fixed;bottom:84px;right:max(24px,env(safe-area-inset-right,0px));background:var(--bg2);border:1px solid var(--border);padding:18px;min-width:190px;z-index:200;transform:translateY(8px) scale(.96);opacity:0;pointer-events:none;transition:all .2s;transform-origin:bottom right}
-#panel.open{transform:none;opacity:1;pointer-events:all}
-.pt{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
-.sbs{display:flex;flex-direction:column;gap:4px}
-.sb{padding:8px 12px;font-size:12px;background:none;border:1px solid var(--border);color:var(--fg);cursor:pointer;text-align:left;font-family:inherit;transition:all .15s}
-.sb:hover,.sb.on{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+#fab{position:fixed;bottom:28px;right:28px;z-index:200}
+#fab-btn{width:46px;height:46px;border-radius:50%;background:var(--fg);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.2);font-size:16px}
+#fab-menu{position:absolute;bottom:56px;right:0;background:var(--card);border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,.2);overflow:hidden;min-width:160px;display:none;border:var(--card-b)}
+#fab-menu.open{display:block}
+.fab-opt{display:block;width:100%;padding:12px 18px;font-size:12px;letter-spacing:.08em;text-align:left;background:none;border:none;cursor:pointer;color:var(--fg);font-family:var(--fb);transition:background .15s}
+.fab-opt:hover{background:var(--bg2)}
+.fab-opt.on{color:var(--ac-dk);font-weight:600}
 
 @media(max-width:768px){
-  .nav-links,.nav-cta{display:none}
-  .nav-ham{display:flex}
-  .sec{padding:70px max(20px,env(safe-area-inset-left,0px))}
+  nav{padding:0 20px}
+  .nav-links{display:none}
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-photo{height:60vh}
+  .hero-text{padding:40px 24px}
+  .hero-h{font-size:36px}
+  section{padding:52px 20px}
+  .services-grid{grid-template-columns:1fr}
+  .editorial,.booking-wrap{grid-template-columns:1fr}
+  .editorial-photo{height:300px}
+  .editorial-text{padding:48px 24px}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .preise-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .gallery-item:first-child,.gallery-item:last-child{grid-column:auto;grid-row:auto}
+  .booking-wrap{padding:52px 20px;gap:40px}
+  footer{flex-direction:column;gap:20px;padding:32px 20px;text-align:center}
+  .footer-links{flex-wrap:wrap;justify-content:center}
 }
 </style>
+</head>
+<body>
 
-<nav id="nav">
-  <div class="nav-logo">K<span>Ö</span>NIG</div>
-  <ul class="nav-links">
-    <li><a href="#leist">Leistungen</a></li>
-    <li><a href="#galerie">Galerie</a></li>
-    <li><a href="#team">Team</a></li>
-    <li><a href="#preise">Preise</a></li>
-    <li><a href="#termin">Termin</a></li>
-  </ul>
-  <button class="nav-cta" onclick="document.getElementById('termin').scrollIntoView({behavior:'smooth'})">Termin buchen</button>
-  <div class="nav-ham"><span></span><span></span><span></span></div>
+<nav>
+  <span class="nav-logo">König</span>
+  <div class="nav-links">
+    <a href="#leistungen">Leistungen</a>
+    <a href="#team">Team</a>
+    <a href="#preise">Preise</a>
+    <a href="#buchung">Termin</a>
+  </div>
+  <a href="#buchung" class="nav-cta">Termin buchen</a>
 </nav>
 
-<section class="hero" id="hero">
-  <div class="hero-left">
-    <div class="hero-txt">
-      <div class="hero-eye">Premium Friseursalon · Wien</div>
-      <h1 class="hero-h1">Dein Stil.<em>Deine Krone.</em></h1>
-      <p class="hero-sub">Meisterhafte Haarkunst in modernem Ambiente. Wir schneiden nicht nur Haare — wir gestalten dein bestes Aussehen.</p>
-      <div class="hero-stats">
-        <div><div class="hero-stat-num">12<span>+</span></div><div class="hero-stat-lbl">Jahre Erfahrung</div></div>
-        <div><div class="hero-stat-num">2.4<span>K+</span></div><div class="hero-stat-lbl">Zufriedene Kunden</div></div>
-        <div><div class="hero-stat-num">4.9<span>★</span></div><div class="hero-stat-lbl">Bewertung</div></div>
-      </div>
-      <div class="hero-btns">
-        <button class="btn-p" onclick="document.getElementById('termin').scrollIntoView({behavior:'smooth'})">Termin Buchen</button>
-        <button class="btn-s" onclick="document.getElementById('leist').scrollIntoView({behavior:'smooth'})">Leistungen</button>
-      </div>
-    </div>
+<!-- HERO SPLIT -->
+<div class="hero">
+  <div class="hero-photo">
+    <div class="hero-photo-bg" style="background-image:url('https://picsum.photos/id/1005/900/1200')"></div>
   </div>
-  <div class="hero-right">
-    <img src="https://picsum.photos/id/1005/900/1200" alt="Friseur König">
-    <div class="hero-right-ov"></div>
-  </div>
-</section>
-
-<section class="sec leist" id="leist">
-  <div class="leist-in">
-    <div class="leist-hd">
-      <div class="eye">Was wir anbieten</div>
-      <h2 class="h2">Unsere <em>Leistungen</em></h2>
+  <div class="hero-text">
+    <div class="hero-eye">Premium Friseur · Wien 7</div>
+    <h1 class="hero-h">Dein Stil.<br><em>Deine Krone.</em></h1>
+    <p class="hero-p">Meisterhafte Haarkunst in modernem Ambiente. Wir schneiden nicht nur Haare — wir gestalten dein bestes Aussehen, jeden einzelnen Tag.</p>
+    <div class="hero-btns">
+      <a href="#buchung" class="btn-primary">Termin buchen</a>
+      <a href="#leistungen" class="btn-outline">Leistungen</a>
     </div>
-    <div class="leist-grid">
-      <div class="leist-item">
-        <div class="leist-icon">✂</div>
-        <div class="leist-nm">Herrenschnitt</div>
-        <div class="leist-desc">Klassischer Schnitt, tief, Nassschnitt, Scherenarbeit oder Fading. Professionell und präzise.</div>
-        <div class="leist-price">ab 25 €</div>
-      </div>
-      <div class="leist-item">
-        <div class="leist-icon">✦</div>
-        <div class="leist-nm">Damenschnitt</div>
-        <div class="leist-desc">Für alle Haarlängen, professionelle Föhnfrisuren, Styling und Blowdry-Finishing.</div>
-        <div class="leist-price">ab 38 €</div>
-      </div>
-      <div class="leist-item">
-        <div class="leist-icon">◈</div>
-        <div class="leist-nm">Balayage</div>
-        <div class="leist-desc">Handgemalte, natürliche Highlights für ein sonnengeküsstes Ergebnis. Individuell und langanhaltend.</div>
-        <div class="leist-price">ab 95 €</div>
-      </div>
-      <div class="leist-item">
-        <div class="leist-icon">◉</div>
-        <div class="leist-nm">Coloration</div>
-        <div class="leist-desc">Vollcoloration, Ansatzauffrischung oder kreative Farbgestaltung mit Premium-Produkten.</div>
-        <div class="leist-price">ab 55 €</div>
-      </div>
-      <div class="leist-item">
-        <div class="leist-icon">❖</div>
-        <div class="leist-nm">Keratin-Behandlung</div>
-        <div class="leist-desc">Professionelle Glättung, Tiefenpflege und Rekonstruktion für seidenweiches Haar.</div>
-        <div class="leist-price">ab 110 €</div>
-      </div>
-      <div class="leist-item">
-        <div class="leist-icon">◇</div>
-        <div class="leist-nm">Braut-Styling</div>
-        <div class="leist-desc">Hochzeitsstyling, Probetagstermin und Styling am großen Tag — unvergesslich schön.</div>
-        <div class="leist-price">ab 180 €</div>
-      </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">12</div><div class="stat-label">Jahre Erfahrung</div></div>
+      <div><div class="stat-num">2.4K</div><div class="stat-label">Zufriedene Kunden</div></div>
+      <div><div class="stat-num">4.9</div><div class="stat-label">Sterne Google</div></div>
     </div>
-  </div>
-</section>
-
-<section class="sec galerie" id="galerie">
-  <div class="galerie-in">
-    <div class="galerie-hd">
-      <div>
-        <div class="eye">Inspirationen</div>
-        <h2 class="h2">Style <em>Galerie</em></h2>
-      </div>
-      <p class="lead">Jeder Haarschnitt ist ein Kunstwerk. Lass dich von unseren Arbeiten inspirieren.</p>
-    </div>
-    <div class="carousel-wrap">
-      <div class="carousel-track" id="ct">
-        <div class="c-slide">
-          <img src="https://picsum.photos/id/1005/1600/900" alt="Style 1">
-          <div class="c-slide-cap"><div class="c-slide-nm">Natural Elegance</div><div class="c-slide-desc">Softer Balayage mit warmem Blond-Finish</div></div>
-        </div>
-        <div class="c-slide">
-          <img src="https://picsum.photos/id/1011/1600/900" alt="Style 2">
-          <div class="c-slide-cap"><div class="c-slide-nm">Bold & Clean</div><div class="c-slide-desc">Präziser Undercut mit texturierten Längen</div></div>
-        </div>
-        <div class="c-slide">
-          <img src="https://picsum.photos/id/1013/1600/900" alt="Style 3">
-          <div class="c-slide-cap"><div class="c-slide-nm">Soft Waves</div><div class="c-slide-desc">Romantische Wellen mit Glossing-Treatment</div></div>
-        </div>
-        <div class="c-slide">
-          <img src="https://picsum.photos/id/1015/1600/900" alt="Style 4">
-          <div class="c-slide-cap"><div class="c-slide-nm">Modern Classic</div><div class="c-slide-desc">Zeitloser Bob mit Ash-Blond-Coloration</div></div>
-        </div>
-        <div class="c-slide">
-          <img src="https://picsum.photos/id/453/1600/900" alt="Style 5">
-          <div class="c-slide-cap"><div class="c-slide-nm">Editorial Look</div><div class="c-slide-desc">Avantgardistisches Styling für besondere Anlässe</div></div>
-        </div>
-      </div>
-      <button class="c-btn c-prev" id="cprev">‹</button>
-      <button class="c-btn c-next" id="cnext">›</button>
-    </div>
-    <div class="c-dots" id="cdots"></div>
-  </div>
-</section>
-
-<section class="sec team" id="team">
-  <div class="team-in">
-    <div class="team-hd">
-      <div class="eye">Die Meister</div>
-      <h2 class="h2">Unser <em>Team</em></h2>
-    </div>
-    <div class="team-grid">
-      <div class="team-card">
-        <div class="team-photo"><img src="https://picsum.photos/id/1011/600/750" alt="Stefan König"></div>
-        <div class="team-info">
-          <div class="team-name">Stefan König</div>
-          <div class="team-role">Inhaber · Master Stylist</div>
-          <div class="team-bio">12 Jahre Erfahrung, ausgebildet in Wien und London. Spezialist für Herrenschnitte und Colorationen.</div>
-        </div>
-      </div>
-      <div class="team-card">
-        <div class="team-photo"><img src="https://picsum.photos/id/1013/600/750" alt="Maria Steiner"></div>
-        <div class="team-info">
-          <div class="team-name">Maria Steiner</div>
-          <div class="team-role">Senior Stylistin</div>
-          <div class="team-bio">Braut-Spezialistin und Balayage-Expertin. Zertifiziert bei Schwarzkopf Professional.</div>
-        </div>
-      </div>
-      <div class="team-card">
-        <div class="team-photo"><img src="https://picsum.photos/id/1015/600/750" alt="Alex Mayer"></div>
-        <div class="team-info">
-          <div class="team-name">Alex Mayer</div>
-          <div class="team-role">Stylist · Colorist</div>
-          <div class="team-bio">Kreative Farblösungen und Editorial-Styling. Leidenschaft für moderne Haarkunst.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec preise" id="preise">
-  <div class="preise-in">
-    <div class="preise-hd">
-      <div class="eye">Transparente Preise</div>
-      <h2 class="h2">Unsere <em>Pakete</em></h2>
-    </div>
-    <div class="preise-grid">
-      <div class="preis-card">
-        <div class="preis-tier">Classic</div>
-        <div class="preis-nm">Essentials</div>
-        <div class="preis-price">25<span>€</span></div>
-        <div class="preis-from">ab pro Besuch</div>
-        <ul class="preis-feats">
-          <li>Herrenschnitt inkl. Styling</li>
-          <li>Damenscnitt inkl. Föhnen</li>
-          <li>Ansatzfärbung</li>
-          <li>Beratungsgespräch</li>
-        </ul>
-        <button class="preis-btn" onclick="document.getElementById('termin').scrollIntoView({behavior:'smooth'})">Termin buchen</button>
-      </div>
-      <div class="preis-card featured">
-        <div class="preis-badge">Beliebt</div>
-        <div class="preis-tier">Premium</div>
-        <div class="preis-nm">Signature</div>
-        <div class="preis-price">95<span>€</span></div>
-        <div class="preis-from">ab pro Besuch</div>
-        <ul class="preis-feats">
-          <li>Alles aus Classic</li>
-          <li>Balayage oder Highlights</li>
-          <li>Glossing-Treatment</li>
-          <li>Professionelles Styling</li>
-          <li>Pflegeprodukt inklusive</li>
-        </ul>
-        <button class="preis-btn" onclick="document.getElementById('termin').scrollIntoView({behavior:'smooth'})">Termin buchen</button>
-      </div>
-      <div class="preis-card">
-        <div class="preis-tier">VIP</div>
-        <div class="preis-nm">Prestige</div>
-        <div class="preis-price">180<span>€</span></div>
-        <div class="preis-from">ab pro Besuch</div>
-        <ul class="preis-feats">
-          <li>Alles aus Premium</li>
-          <li>Braut- oder Event-Styling</li>
-          <li>Keratin-Behandlung</li>
-          <li>Probetagstermin inkl.</li>
-          <li>Prioritäts-Terminbuchung</li>
-        </ul>
-        <button class="preis-btn" onclick="document.getElementById('termin').scrollIntoView({behavior:'smooth'})">Termin buchen</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec termin" id="termin">
-  <div class="termin-in">
-    <div>
-      <div class="eye">Terminbuchung</div>
-      <h2 class="h2">Deinen Termin <em>buchen</em></h2>
-      <div class="termin-perks">
-        <div class="perk"><div class="perk-ico">✦</div><div><div class="perk-label">Kostenlose Beratung</div><div class="perk-val">Jeder Termin beginnt mit einer persönlichen Stil-Beratung</div></div></div>
-        <div class="perk"><div class="perk-ico">◎</div><div><div class="perk-label">Flexible Zeiten</div><div class="perk-val">Mo–Sa 9:00–19:00 Uhr, auch kurzfristige Termine</div></div></div>
-        <div class="perk"><div class="perk-ico">◇</div><div><div class="perk-label">Premium Produkte</div><div class="perk-val">Ausschließlich Schwarzkopf Professional und Davines</div></div></div>
-        <div class="perk"><div class="perk-ico">★</div><div><div class="perk-label">Garantierte Zufriedenheit</div><div class="perk-val">Nicht zufrieden? Wir korrigieren kostenlos</div></div></div>
-      </div>
-    </div>
-    <form onsubmit="this.querySelector('.f-sub').textContent='✓ Termin bestätigt!';return false">
-      <div class="f-row"><input class="f-in" type="text" placeholder="Vorname"><input class="f-in" type="text" placeholder="Nachname"></div>
-      <div class="f-row"><input class="f-in" type="date"><input class="f-in" type="tel" placeholder="Telefon"></div>
-      <select class="f-in"><option value="">Leistung wählen</option><option>Herrenschnitt</option><option>Damenschnitt</option><option>Balayage</option><option>Coloration</option><option>Keratin-Behandlung</option><option>Braut-Styling</option></select>
-      <select class="f-in"><option value="">Wunsch-Stylist</option><option>Stefan König</option><option>Maria Steiner</option><option>Alex Mayer</option><option>Keine Präferenz</option></select>
-      <textarea class="f-in" rows="3" placeholder="Besondere Wünsche oder Anmerkungen …"></textarea>
-      <button class="f-sub">Termin anfragen</button>
-    </form>
-  </div>
-</section>
-
-<footer>
-  <div class="foot-in">
-    <div class="foot-logo">K<span>Ö</span>NIG</div>
-    <nav class="foot-nav">
-      <a href="#leist">Leistungen</a><a href="#galerie">Galerie</a><a href="#team">Team</a><a href="#preise">Preise</a><a href="#termin">Termin</a><a href="#">Impressum</a>
-    </nav>
-  </div>
-  <div class="foot-copy">© 2026 König Friseursalon · Meisterhafte Haarkunst in Wien</div>
-</footer>
-
-<button id="fab" onclick="document.getElementById('panel').classList.toggle('open')">⚙</button>
-<div id="panel">
-  <div class="pt">Stil</div>
-  <div class="sbs">
-    <button class="sb on" onclick="ss('classic',this)">◼ Classic (Standard)</button>
-    <button class="sb" onclick="ss('fresh',this)">◈ Fresh (Grün)</button>
-    <button class="sb" onclick="ss('bold',this)">◆ Bold (Lila)</button>
   </div>
 </div>
 
+<!-- LEISTUNGEN -->
+<section id="leistungen">
+  <div class="sec-label">Was wir für dich tun</div>
+  <h2 class="sec-h">Handwerk auf höchstem Niveau</h2>
+  <p class="sec-p">Von klassischen Schnitten bis zu avantgardistischen Transformationen — jede Leistung ist ein Kunstwerk.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-img" style="background-image:url('https://picsum.photos/id/1011/700/900')"></div>
+      <div class="service-overlay"></div>
+      <div class="service-info">
+        <div class="service-tag">Damen</div>
+        <div class="service-title">Schnitt & Styling</div>
+        <div class="service-desc">Präzisions-Schnitte für jeden Haartyp — von klassisch bis avantgardistisch, angepasst an Ihr Gesicht und Ihren Lifestyle.</div>
+        <div class="service-price">ab € 65</div>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-img" style="background-image:url('https://picsum.photos/id/1012/700/900')"></div>
+      <div class="service-overlay"></div>
+      <div class="service-info">
+        <div class="service-tag">Farbe</div>
+        <div class="service-title">Balayage & Highlights</div>
+        <div class="service-desc">Balayage, Ombre, Vollton — wir kennen jeden Trend und jede Technik für natürlich strahlende Farben.</div>
+        <div class="service-price">ab € 120</div>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-img" style="background-image:url('https://picsum.photos/id/1013/700/900')"></div>
+      <div class="service-overlay"></div>
+      <div class="service-info">
+        <div class="service-tag">Braut</div>
+        <div class="service-title">Braut-Styling</div>
+        <div class="service-desc">Für den schönsten Tag: Haarstyling, Make-up und Beratung aus einer Hand. Probetermin inklusive.</div>
+        <div class="service-price">ab € 180</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDITORIAL / PHILOSOPHY -->
+<div class="editorial">
+  <div class="editorial-text">
+    <div class="sec-label">Unsere Philosophie</div>
+    <h2 class="sec-h">Schönheit ist keine Uniform</h2>
+    <p class="sec-p">Jeder Mensch ist einzigartig — deshalb beginnt jeder Termin bei uns mit einem ausführlichen Beratungsgespräch. Wir hören zu, beobachten und gestalten genau das, was zu Ihnen passt.</p>
+    <p class="sec-p" style="margin-top:16px">Seit 12 Jahren verfeinern wir unser Handwerk, bilden uns ständig weiter und arbeiten ausschließlich mit Premium-Produkten der Marken Kerastase und Olaplex.</p>
+    <a href="#buchung" class="btn-primary" style="margin-top:28px;display:inline-block">Jetzt buchen</a>
+  </div>
+  <div class="editorial-photo">
+    <div class="editorial-photo-bg" style="background-image:url('https://picsum.photos/id/338/900/700')"></div>
+  </div>
+</div>
+
+<!-- TEAM -->
+<section id="team" style="background:var(--bg2)">
+  <div class="sec-label">Unser Team</div>
+  <h2 class="sec-h">Die Köpfe hinter dem Salon</h2>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-photo" style="background-image:url('https://picsum.photos/id/1067/600/800')"></div>
+      <div class="team-name">Sophie König</div>
+      <div class="team-role">Inhaberin · Master Stylist</div>
+      <div class="team-spec">Balayage · Braut-Styling · Farbberatung</div>
+    </div>
+    <div class="team-card">
+      <div class="team-photo" style="background-image:url('https://picsum.photos/id/1047/600/800')"></div>
+      <div class="team-name">Maria Hoffmann</div>
+      <div class="team-role">Senior Stylistin</div>
+      <div class="team-spec">Damen-Schnitte · Keratin · Styling</div>
+    </div>
+    <div class="team-card">
+      <div class="team-photo" style="background-image:url('https://picsum.photos/id/1035/600/800')"></div>
+      <div class="team-name">Julia Reiter</div>
+      <div class="team-role">Color Specialist</div>
+      <div class="team-spec">Highlights · Ombre · Blondierungen</div>
+    </div>
+  </div>
+</section>
+
+<!-- PREISLISTE -->
+<section id="preise">
+  <div class="sec-label">Preisliste</div>
+  <h2 class="sec-h">Transparente Preise</h2>
+  <div class="preise-grid">
+    <div class="preise-box">
+      <div class="preise-title">Schnitt & Styling</div>
+      <div class="preise-row"><span>Damen Schnitt (inkl. Blow-Dry)</span><span>ab € 65</span></div>
+      <div class="preise-row"><span>Herren Schnitt</span><span>ab € 38</span></div>
+      <div class="preise-row"><span>Kind (bis 12 Jahre)</span><span>ab € 28</span></div>
+      <div class="preise-row"><span>Braut-Styling (inkl. Probe)</span><span>ab € 180</span></div>
+      <div class="preise-row"><span>Event-Styling</span><span>ab € 90</span></div>
+    </div>
+    <div class="preise-box">
+      <div class="preise-title">Farbe & Behandlung</div>
+      <div class="preise-row"><span>Vollton (kurz/lang)</span><span>ab € 80 / 110</span></div>
+      <div class="preise-row"><span>Balayage / Ombre</span><span>ab € 160</span></div>
+      <div class="preise-row"><span>Highlights (Folie)</span><span>ab € 90</span></div>
+      <div class="preise-row"><span>Olaplex-Behandlung</span><span>ab € 55</span></div>
+      <div class="preise-row"><span>Keratin-Glättung</span><span>ab € 180</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section id="galerie" style="padding-top:0">
+  <div class="gallery-grid">
+    <div class="gallery-item" style="background-image:url('https://picsum.photos/id/1005/1000/500')"></div>
+    <div class="gallery-item" style="background-image:url('https://picsum.photos/id/1011/500/400')"></div>
+    <div class="gallery-item" style="background-image:url('https://picsum.photos/id/338/500/400')"></div>
+    <div class="gallery-item" style="background-image:url('https://picsum.photos/id/1013/500/400')"></div>
+    <div class="gallery-item" style="background-image:url('https://picsum.photos/id/1067/500/400')"></div>
+    <div class="gallery-item" style="background-image:url('https://picsum.photos/id/1012/1000/500')"></div>
+  </div>
+</section>
+
+<!-- BUCHUNG -->
+<div class="booking-wrap" id="buchung">
+  <div>
+    <div class="sec-label">Terminbuchung</div>
+    <h2 class="sec-h">Deinen Termin sichern</h2>
+    <p class="sec-p">Wir freuen uns auf dich! Buche deinen Wunschtermin online oder ruf uns direkt an — wir sind Mo–Sa von 9 bis 19 Uhr für euch da.</p>
+    <div style="margin-top:28px;font-size:13px;line-height:2;color:rgba(240,232,220,.65)">
+      <div>📍 Westbahnstraße 18, 1070 Wien</div>
+      <div>📞 +43 1 523 45 67</div>
+      <div>✉ hello@koenig-salon.at</div>
+      <div>🕐 Mo–Fr 9–19 Uhr · Sa 9–17 Uhr</div>
+    </div>
+  </div>
+  <form onsubmit="return false">
+    <div class="form-row">
+      <input type="text" placeholder="Vorname" required>
+      <input type="text" placeholder="Nachname" required>
+    </div>
+    <input type="email" placeholder="E-Mail-Adresse" required>
+    <input type="tel" placeholder="Telefonnummer">
+    <div class="form-row">
+      <input type="date">
+      <select><option value="">Leistung wählen</option><option>Schnitt & Blow-Dry</option><option>Farbe / Balayage</option><option>Highlights</option><option>Braut-Styling</option><option>Behandlung</option></select>
+    </div>
+    <select><option value="">Stylistin wählen</option><option>Sophie König</option><option>Maria Hoffmann</option><option>Julia Reiter</option><option>Kein Wunsch</option></select>
+    <textarea placeholder="Besondere Wünsche oder Anmerkungen…" rows="3"></textarea>
+    <button type="submit" class="btn-primary" style="cursor:pointer;font-size:12px;padding:15px">Termin anfragen</button>
+  </form>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">König</div>
+  <div class="footer-links">
+    <a href="#">Leistungen</a><a href="#">Team</a><a href="#">Galerie</a><a href="#">Datenschutz</a><a href="#">Impressum</a>
+  </div>
+  <div class="footer-copy">© 2024 König Salon GmbH</div>
+</footer>
+
+<!-- FAB -->
+<div id="fab">
+  <div id="fab-menu">
+    <button class="fab-opt on" onclick="setTheme('')">🤍 Classic</button>
+    <button class="fab-opt" onclick="setTheme('thm-fresh')">🌿 Fresh</button>
+    <button class="fab-opt" onclick="setTheme('thm-noir')">🖤 Noir</button>
+  </div>
+  <button id="fab-btn" onclick="document.getElementById('fab-menu').classList.toggle('open')">🎨</button>
+</div>
+
 <script>
-// CAROUSEL
-(function(){
-  const track=document.getElementById('ct'),slides=track.querySelectorAll('.c-slide'),dc=document.getElementById('cdots');
-  let cur=0,timer;
-  slides.forEach((_,i)=>{const d=document.createElement('div');d.className='c-dot'+(i===0?' on':'');d.onclick=()=>go(i);dc.appendChild(d)});
-  function go(n){cur=(n+slides.length)%slides.length;track.style.transform=`translateX(-${cur*100}%)`;dc.querySelectorAll('.c-dot').forEach((d,i)=>d.classList.toggle('on',i===cur));clearInterval(timer);timer=setInterval(()=>go(cur+1),4500)}
-  document.getElementById('cprev').onclick=()=>go(cur-1);
-  document.getElementById('cnext').onclick=()=>go(cur+1);
-  timer=setInterval(()=>go(cur+1),4500);
-})();
-
-// NAV
-window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>60),{passive:true});
-
-// STYLES
-const ST={classic:{'--gold':'#c9a84c','--gold-lt':'#e8cc84'},fresh:{'--gold':'#4a9b6f','--gold-lt':'#72c496'},bold:{'--gold':'#8b3a8b','--gold-lt':'#b060b0'}};
-function ss(s,btn){document.querySelectorAll('.sb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');Object.entries(ST[s]).forEach(([k,v])=>document.documentElement.style.setProperty(k,v));try{localStorage.setItem('kg_s',s)}catch(e){}}
-try{const s=localStorage.getItem('kg_s');if(s&&ST[s]){const i=Object.keys(ST).indexOf(s);ss(s,document.querySelectorAll('.sb')[i])}}catch(e){}
+function setTheme(cls){document.body.className=cls;document.querySelectorAll('.fab-opt').forEach(b=>b.classList.remove('on'));event.target.classList.add('on');document.getElementById('fab-menu').classList.remove('open');localStorage.setItem('salon-theme',cls)}
+const sv=localStorage.getItem('salon-theme');if(sv!==null)document.body.className=sv;
 </script>
+</body>
+</html>
